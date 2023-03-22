@@ -13,6 +13,16 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(255), nullable=False)
+    last_name = db.Column(db.String(255), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False)
+    profile_picture = db.Column(db.String)
+    date_of_birth = db.Column(db.Integer, nullable=False)
+    gender = db.Column(db.String, nullable=False)
+    about_me = db.Column(db.String(2000), nullable=False)
+
+    #relationships
+    location = db.relationship("Location", backref="users")
 
     @property
     def password(self):
@@ -29,5 +39,12 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'location_id': self.location_id,
+            'profile_picture': self.profile_picture,
+            'date_of_birth': self.date_of_birth,
+            'gender': self.gender,
+            'about_me': self.about_me
         }
