@@ -6,7 +6,7 @@ import { fetchLocations } from "../../store/locations";
 const Locations = () => {
   const dispatch = useDispatch();
   const locations = useSelector(state => state.locations)
-  console.log("locations from home page", locations)
+  // console.log("locations from home page", locations)
   useEffect(() => {
     dispatch(fetchLocations())
   }, [dispatch])
