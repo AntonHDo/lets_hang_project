@@ -20,7 +20,7 @@ class Scheduling(db.Model):
     #relationships
     user = db.relationship("User", foreign_keys=[user_id])
     friend = db.relationship("User", foreign_keys=[friend_id])
-
+    location = db.relationship("Location", back_populates="schedulings")
 
     def __init__(self, user_id, friend_id, **kwargs):
         if user_id == friend_id:

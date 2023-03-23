@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     about_me = db.Column(db.String(2000), nullable=False)
 
     #relationships
-
+    location = db.relationship("Location", back_populates="users")
 
     @property
     def password(self):
