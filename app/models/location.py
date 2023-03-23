@@ -15,6 +15,9 @@ class Location(db.Model):
     preview_img = db.Column(db.String(255), nullable=False)
 
     # relationships
+    users = db.relationship("User", backref="location")
+
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -23,4 +26,5 @@ class Location(db.Model):
             "state": self.state,
             "country": self.country,
             "preview_img": self.preview_img,
+            "users": [user.to_dict() for user in self.users]
         }

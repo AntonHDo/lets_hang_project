@@ -1,1 +1,28 @@
 /* TODO Add site wide styles */
+
+/* Utility classes */
+.site-button {
+  border-radius: 10px;
+}
+
+/* Global styles */
+
+body {
+  font-size: 1.125rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h2 {}
+
+h3 {}
+
+
+h4 {}
+
+h5 {}
+
+h6 {}

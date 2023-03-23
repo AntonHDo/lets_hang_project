@@ -29,7 +29,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/climbers">
+          <Route path="/location/:locationId/climbers">
             <Schedulings />
           </Route>
           <Route path="/current/blacklist">
@@ -38,7 +38,7 @@ function App() {
           <Route path="/current">
             <div />
           </Route>
-          <Route path="/user/:userId">
+          <Route path="/users/:userId">
             <div />
           </Route>
         </Switch>
