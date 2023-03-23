@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False)
     profile_picture = db.Column(db.String)
-    date_of_birth = db.Column(db.Integer, nullable=False)
+    date_of_birth = db.Column(db.String, nullable=False)
     gender = db.Column(db.String, nullable=False)
     about_me = db.Column(db.String(2000), nullable=False)
 
