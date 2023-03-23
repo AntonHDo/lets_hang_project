@@ -33,8 +33,8 @@ class Scheduling(db.Model):
         return{
             "id": self.id,
             "date": self.date,
-            "time_start": self.time_start,
-            "time_end": self.time_end,
+            "time_start": self.time_start.strftime('%H:%M:%S'),
+            "time_end": self.time_end.strftime('%H:%M:%S'),
             "status": self.status,
             "user_id": self.user_id,
             "friend_id": self.friend_id,
