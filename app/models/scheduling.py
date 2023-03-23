@@ -20,7 +20,14 @@ class Scheduling(db.Model):
     #relationships
     user = db.relationship("User", foreign_keys=[user_id])
     friend = db.relationship("User", foreign_keys=[friend_id])
-    location = db.relationship("Location", backref="schedulings")
+
+
+    def __init__(self, user_id, friend_id, **kwargs):
+        if user_id == friend_id:
+            raise ValueError("User and friend cannot be the same.")
+        self.user_id = user_id
+        self.friend_id = friend_id
+        super().__init__(**kwargs)
 
     def to_dict(self):
         return{
@@ -31,5 +38,7 @@ class Scheduling(db.Model):
             "status": self.status,
             "user_id": self.user_id,
             "friend_id": self.friend_id,
-            "location_id": self.location_id
+            "location_id": self.location_id,
+            "user": self.user.to_dict(),
+            "friend": self.friend.to_dict(),
         }

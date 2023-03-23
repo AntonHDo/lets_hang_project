@@ -11,6 +11,12 @@ def get_all_locations():
     locations = Location.query.all()
     return [location.to_dict() for location in locations]
 
+@locations_routes.route("/<int:id>")
+def get_single_location(id):
+    location = Location.query.get(id)
+    locationDictionary = location.to_dict()
+    return locationDictionary
+
 # @locations_routes.route("/")
 # def create_new_location():
 #     res = request.get_json()
