@@ -37,7 +37,7 @@ def seed_users():
          first_name='Bobbie',
          last_name='Johnson',
          profile_picture="https://i.imgur.com/8ZsfRqA.png",
-         location_id=3,
+         location_id=2,
          date_of_birth='1988-10-20',
          gender='Non-binary',
          about_me='I am Bobbie'

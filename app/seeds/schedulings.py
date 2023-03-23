@@ -29,7 +29,7 @@ def seed_schedulings():
         date=datetime(2023, 3, 24),
         time_start=datetime(2023, 3, 24, 14, 0),
         time_end=datetime(2023, 3, 24, 15, 0),
-        status="Scheduled"
+        status="Lets Hang!"
     )
     db.session.add_all([scheduling1, scheduling2, scheduling3])
     db.session.commit()
