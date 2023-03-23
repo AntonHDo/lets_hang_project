@@ -14,8 +14,8 @@ def get_all_schedulings():
 def get_single_scheduling(id):
     scheduling = Scheduling.query.get(id)
     schedulingDictionary = scheduling.to_dict()
-    schedulingDictionary['user'] = scheduling.user.to_dict()
-    schedulingDictionary['locations'] = [location.to_dict() for location in scheduling.locations]
+    # schedulingDictionary['user'] = scheduling.user.to_dict()
+    # schedulingDictionary['locations'] = [location.to_dict() for location in scheduling.locations]
     return schedulingDictionary
 
 @schedulings_routes.route("/", methods=['POST'])

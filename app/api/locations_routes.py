@@ -16,20 +16,3 @@ def get_single_location(id):
     location = Location.query.get(id)
     locationDictionary = location.to_dict()
     return locationDictionary
-
-# @locations_routes.route("/")
-# def create_new_location():
-#     res = request.get_json()
-#     form = LocationForm()
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-#     if form.validate_on_submit():
-#         location = Location(
-#           location_name=res["location_name"],
-#           city=res["city"],
-#           state=res["state"],
-#           country=res["country"],
-#           preview_img=res["preview_img"],
-#         )
-#         db.session.add(location)
-#         db.session.commit()
-#         return location.to_dict()
