@@ -43,7 +43,7 @@ def upgrade():
     sa.Column('last_name', sa.String(length=255), nullable=False),
     sa.Column('location_id', sa.Integer(), nullable=False),
     sa.Column('profile_picture', sa.String(), nullable=True),
-    sa.Column('date_of_birth', sa.Integer(), nullable=False),
+    sa.Column('date_of_birth', sa.String(), nullable=False),
     sa.Column('gender', sa.String(), nullable=False),
     sa.Column('about_me', sa.String(length=2000), nullable=False),
     sa.ForeignKeyConstraint(['location_id'], ['locations.id'], ),
