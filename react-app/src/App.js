@@ -6,7 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Locations from "./components/Locations";
-import Schedulings from "./components/Schedulings";
+import Schedulings from "./components/SchedulingsModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Locations />
-            <Schedulings />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
@@ -30,13 +29,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="current/blacklist">
+          <Route path="/climbers">
+            <Schedulings />
+          </Route>
+          <Route path="/current/blacklist">
             <div />
           </Route>
-          <Route path="current">
+          <Route path="/current">
             <div />
           </Route>
-          <Route path="user/:userId">
+          <Route path="/user/:userId">
             <div />
           </Route>
         </Switch>

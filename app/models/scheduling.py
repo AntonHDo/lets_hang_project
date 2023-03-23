@@ -9,7 +9,7 @@ class Scheduling(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Integer, nullablle=False, default=date.today)
+    date = db.Column(db.Integer, default=date.today())
     time_start = db.Column(db.Integer, nullable=False)
     time_end = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String, nullable=False)
