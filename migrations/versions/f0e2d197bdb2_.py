@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4c3795b541dd
+Revision ID: f0e2d197bdb2
 Revises:
-Create Date: 2023-03-23 03:44:00.973470
+Create Date: 2023-03-23 08:55:54.894414
 
 """
 from alembic import op
@@ -12,7 +12,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '4c3795b541dd'
+revision = 'f0e2d197bdb2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,7 +33,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE locations SET SCHEMA {SCHEMA};")
 
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -51,10 +50,8 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
+        op.execute(f"ALTER TABLE locations SET SCHEMA {SCHEMA};")
 
     op.create_table('schedulings',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,12 +67,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE schedulings SET SCHEMA {SCHEMA};")
-
-
-
     # ### end Alembic commands ###
 
 
