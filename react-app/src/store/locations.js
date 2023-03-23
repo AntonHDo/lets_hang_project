@@ -26,8 +26,6 @@ const initialState = {};
 
 const locationsReducer = (state = initialState, action) => {
   let newState = { ...state };
-  // console.log("new state from reducer", newState)
-  // console.log("action from reducer", action)
   switch (action.type) {
     case GET_ALL_LOCATIONS:
       newState["locations"] = action.locations;
