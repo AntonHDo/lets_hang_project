@@ -1,6 +1,6 @@
 from app.models import db, Scheduling, SCHEMA, environment
 from sqlalchemy.sql import text
-from datetime import datetime, timedelta, date
+from datetime import datetime, time, date
 
 
 def seed_schedulings():
@@ -8,27 +8,27 @@ def seed_schedulings():
         user_id=1,
         friend_id=2,
         location_id=1,
-        date=datetime(2023, 3, 22),
-        time_start=datetime(2023, 3, 22, 10, 30),
-        time_end=datetime(2023, 3, 22, 11, 30),
+        date=date(2023, 3, 22),
+        time_start=time(10, 30),
+        time_end=time(11, 30),
         status="Lets Hang!"
     )
     scheduling2 = Scheduling(
         user_id=2,
         friend_id=1,
         location_id=2,
-        date=datetime(2023, 3, 23),
-        time_start=datetime(2023, 3, 23, 14, 0),
-        time_end=datetime(2023, 3, 23, 15, 0),
+        date=date(2023, 3, 23),
+        time_start=time(14, 0),
+        time_end=time(15, 0),
         status="Declined"
     )
     scheduling3 = Scheduling(
         user_id=2,
         friend_id=3,
         location_id=2,
-        date=datetime(2023, 3, 24),
-        time_start=datetime(2023, 3, 24, 14, 0),
-        time_end=datetime(2023, 3, 24, 15, 0),
+        date=date(2023, 3, 24),
+        time_start=time(14, 0),
+        time_end=time(15, 0),
         status="Lets Hang!"
     )
     db.session.add_all([scheduling1, scheduling2, scheduling3])

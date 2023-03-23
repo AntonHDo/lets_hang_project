@@ -9,9 +9,9 @@ class Scheduling(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Integer, default=date.today())
-    time_start = db.Column(db.Integer, nullable=False)
-    time_end = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.Date, default=date.today())
+    time_start = db.Column(db.Time, nullable=False)
+    time_end = db.Column(db.Time, nullable=False)
     status = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     friend_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)

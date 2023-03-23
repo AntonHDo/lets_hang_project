@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f0e2d197bdb2
+Revision ID: 45e7127208a1
 Revises:
-Create Date: 2023-03-23 08:55:54.894414
+Create Date: 2023-03-23 09:17:47.203155
 
 """
 from alembic import op
@@ -12,7 +12,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'f0e2d197bdb2'
+revision = '45e7127208a1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,6 @@ def upgrade():
     sa.Column('preview_img', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE locations SET SCHEMA {SCHEMA};")
 
@@ -51,13 +50,13 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE locations SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('schedulings',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('date', sa.Integer(), nullable=True),
-    sa.Column('time_start', sa.Integer(), nullable=False),
-    sa.Column('time_end', sa.Integer(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=True),
+    sa.Column('time_start', sa.Time(), nullable=False),
+    sa.Column('time_end', sa.Time(), nullable=False),
     sa.Column('status', sa.String(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('friend_id', sa.Integer(), nullable=False),
