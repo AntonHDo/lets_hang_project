@@ -39,6 +39,6 @@ class Scheduling(db.Model):
             "user_id": self.user_id,
             "friend_id": self.friend_id,
             "location_id": self.location_id,
-            # "user": self.user.to_dict(),
-            # "friend": self.friend.to_dict(),
+            "user": self.user.to_dict(),
+            "friend": self.friend.to_dict(),
         }

@@ -26,6 +26,6 @@ class Location(db.Model):
             "state": self.state,
             "country": self.country,
             "preview_img": self.preview_img,
-            # "users": [user.to_dict() for user in self.users],
-            # "schedulings": [scheduling.to_dict() for scheduling in self.schedulings]
+            "users": [user.to_dict() for user in self.users],
+            "schedulings": [scheduling.to_dict() for scheduling in self.schedulings]
         }
