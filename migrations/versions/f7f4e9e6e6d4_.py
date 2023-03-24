@@ -7,7 +7,9 @@ Create Date: 2023-03-24 10:44:02.858481
 """
 from alembic import op
 import sqlalchemy as sa
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'f7f4e9e6e6d4'
@@ -25,6 +27,8 @@ def upgrade():
         batch_op.add_column(sa.Column('read', sa.Boolean(), nullable=False))
         batch_op.create_foreign_key("fk_notifications_scheduling_id", 'schedulings', ['scheduling_id'], ['id'])
 
+    if environment == "production":
+        op.execute(f"ALTER TABLE notifications SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
