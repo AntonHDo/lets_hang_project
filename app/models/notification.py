@@ -9,7 +9,7 @@ class Notification(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     other_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     scheduling_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("schedulings.id")), nullable=True)
-    type = db.Column(db.String(50), nullable=True)
+    type = db.Column(db.String(50), nullable=False)
     message = db.Column(db.String(255), nullable=False)
     read = db.Column(db.Boolean, default=False, nullable=False)
 
