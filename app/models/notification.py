@@ -20,4 +20,5 @@ class Notification(db.Model):
             "other_user_id": self.other_user_id,
             "user": self.user.to_dict(),
             "other_user": self.other_user.to_dict(),
+
         }
