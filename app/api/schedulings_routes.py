@@ -3,6 +3,7 @@ from app.models import db, Scheduling
 from app.forms.schedulings_form import SchedulingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
+from app.models import Notification
 
 schedulings_routes = Blueprint("schedulings", __name__)
 
@@ -40,6 +41,17 @@ def create_new_scheduling():
             location_id=res["location_id"]
         )
         db.session.add(scheduling)
+        db.session.commit()
+
+        notification = Notification(
+            user_id=res["friend_id"],
+            other_user_id=res["user_id"],
+            scheduling_id=scheduling.id,
+            type="scheduling_request",
+            message=f"{scheduling.user.username} wants to schedule a hangout",
+            read=False
+        )
+        db.session.add(notification)
         db.session.commit()
         return scheduling.to_dict()
 

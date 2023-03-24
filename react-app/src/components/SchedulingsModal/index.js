@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { makeScheduling } from "../../store/schedulings";
+import { makeNotification } from "../../store/notifications";
 
 
 const SchedulingsModal = ({ user }) => {
@@ -30,7 +31,20 @@ const SchedulingsModal = ({ user }) => {
       status: "pending"
     };
 
-    await dispatch(makeScheduling(newScheduling))
+    const scheduling = await dispatch(makeScheduling(newScheduling))
+    console.log(scheduling)
+
+
+    const notification = {
+      user_id: user.id, // The user who will receive the notification
+      other_user_id: currentUser.id, // The user who is sending the notification
+      scheduling_id: scheduling?.id, // The scheduling ID associated with the notification
+      type: "scheduling_request", // Set a default value for the 'type' field
+      message: "hi",
+      read: false,
+    };
+    await dispatch(makeNotification(notification));
+
     closeModal()
   }
 

@@ -36,13 +36,15 @@ export const deleteNotification = (notificationId) => {
 
 //thunk
 
-export const fetchNotifications = () => async (dispatch) => {
+export const fetchNotifications = () => async (dispatch, getState) => {
   const response = await fetch("/api/notifications/");
 
   if (response.ok) {
     const data = await response.json();
+    const userId = getState().session?.user?.id;
+    const filteredData = data.filter(notification => notification.user_id === userId)
     let normalizedData = {};
-    data.forEach((notification) => (normalizedData[notification.id] = notification));
+    filteredData.forEach((notification) => (normalizedData[notification.id] = notification));
     dispatch(getNotifications(normalizedData))
   }
 }
@@ -82,6 +84,8 @@ export const removeNotification = (notificationId) => async (dispatch) => {
     dispatch(deleteNotification(notificationId));
   }
 };
+
+
 
 
 //reducer
