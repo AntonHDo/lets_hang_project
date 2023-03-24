@@ -18,19 +18,21 @@ function Navigation({ isLoaded }) {
 	useEffect(() => {
 		dispatch(fetchNotifications());
 		dispatch(fetchLocations())
-	}, [dispatch]);
+	}, [dispatch, sessionUser]);
 
 
 	const getUnreadNotifications = () => {
 		if (!notifications) {
 			return 0;
 		}
-		const unreadNotifications = Object.values(notifications).filter(notification => !notification.read && notification?.user_id !== sessionUser?.id)
+		const unreadNotifications = Object.values(notifications).filter(notification => !notification.read)
 		return unreadNotifications.length
 	}
+
 	useEffect(() => {
-		setUnreadNotificationsCount(getUnreadNotifications())
-	}, [notifications])
+		const count = getUnreadNotifications();
+		setUnreadNotificationsCount(count);
+	}, [notifications, sessionUser])
 
 
 	return (

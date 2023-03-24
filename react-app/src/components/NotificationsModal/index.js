@@ -27,21 +27,21 @@ const NotificationsModal = ({ notifications, locations }) => {
     <ul>
       {notificationsArr.map((notification) => {
 
-        const locationId = notification.scheduling.location_id;
+        const locationId = notification.scheduling?.location_id;
         const location = locationsArr.find((location) => location.id === locationId);
 
 
         return (
-          <li key={notification.id}>
-            {notification.other_user.username} wants to schedule a Hang out at {location?.location_name}, {new Date(notification.scheduling.date).toLocaleString("en-US", {
+          <li key={notification?.id}>
+            {notification?.other_user.username} wants to schedule a Hang out at {location?.location_name}, {new Date(notification?.scheduling?.date).toLocaleString("en-US", {
               day: "2-digit",
               month: "short",
               year: "numeric",
-            })} at {new Date(`1970-01-01T${notification.scheduling.time_start}`).toLocaleString("en-US", {
+            })} at {new Date(`1970-01-01T${notification.scheduling?.time_start}`).toLocaleString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
               hour12: true,
-            })} to {new Date(`1970-01-01T${notification.scheduling.time_end}`).toLocaleString("en-US", {
+            })} to {new Date(`1970-01-01T${notification.scheduling?.time_end}`).toLocaleString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
               hour12: true,

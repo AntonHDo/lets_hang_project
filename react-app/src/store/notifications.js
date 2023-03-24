@@ -43,6 +43,7 @@ export const fetchNotifications = () => async (dispatch, getState) => {
     const data = await response.json();
     const userId = getState().session?.user?.id;
     const filteredData = data.filter(notification => notification.user_id === userId)
+    console.log("thunk filtereddata", filteredData)
     let normalizedData = {};
     filteredData.forEach((notification) => (normalizedData[notification.id] = notification));
     dispatch(getNotifications(normalizedData))
@@ -97,6 +98,12 @@ const notificationsReducer = (state = initialState, action) => {
     case GET_ALL_NOTIFICATIONS:
       newState["notifications"] = action.notifications;
       return newState
+    case CREATE_NOTIFICATION:
+      newState["notification"] = action.notification;
+      return newState
+    case DELETE_NOTIFICATION:
+      delete newState.notifications[action.notificationId];
+      return newState;
     default:
       return state
   }
