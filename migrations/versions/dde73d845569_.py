@@ -34,6 +34,6 @@ def downgrade():
     with op.batch_alter_table('notifications', schema=None) as batch_op:
         batch_op.alter_column('type',
                existing_type=sa.VARCHAR(length=50),
-               nullable=True)
+               nullable=False)
 
     # ### end Alembic commands ###
