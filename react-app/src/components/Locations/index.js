@@ -2,6 +2,11 @@ import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { fetchLocations } from "../../store/locations";
+import { fetchNotifications } from "../../store/notifications";
+import { logout } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 const Locations = () => {
   const dispatch = useDispatch();
@@ -18,10 +23,20 @@ const Locations = () => {
         <div className="loggedOutHomeBannerContainer">
           <h2>Make the first move!</h2>
           <div>Start meeting new people in your area! If you already have an account, sign in to use Bumble on the web.</div>
+
           <div>
-            <button>Modal Join</button>
-            <button>Modal Sign in</button>
+            <OpenModalButton
+              buttonText="Log In"
+              // onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalButton
+              buttonText="Sign Up"
+              // onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
           </div>
+
         </div>
       )
     }
@@ -30,6 +45,7 @@ const Locations = () => {
   // console.log("locations from home page", locations)
   useEffect(() => {
     dispatch(fetchLocations())
+    dispatch(fetchNotifications())
   }, [dispatch])
 
   if (!locations) {
@@ -53,6 +69,16 @@ const Locations = () => {
             </div>
           </NavLink>
         ))}
+      </div>
+      <div className="homeAboutUsAndMissionContainer">
+        <div className="homeAboutUsContainer">
+          <div>About Us</div>
+          <img alt="nothing yet" />
+        </div>
+        <div className="homeMissionContainer">
+          <div>Mission</div>
+          <img alt="nothing yet" />
+        </div>
       </div>
     </div>
   )

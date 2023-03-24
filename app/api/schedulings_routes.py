@@ -43,7 +43,7 @@ def delete_a_scheduling(id):
     if scheduling:
         db.session.delete(scheduling)
         db.session.commit()
-        return {"Response": f"Successfully deleted item."}
+        return {"Response": f"Successfully deleted scheduling."}
 
 
 @schedulings_routes.route("/<int:id>", methods=["PUT"])

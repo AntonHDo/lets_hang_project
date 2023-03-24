@@ -3,11 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import locations from './locations'
 import schedulings from './schedulings'
+import notifications from './notifications'
 
 const rootReducer = combineReducers({
   session,
   locations,
-  schedulings
+  schedulings,
+  notifications
+
 });
 
 
