@@ -10,6 +10,8 @@ export const EDIT_SCHEDULING = "scheduling/edit";
 
 export const DELETE_SCHEDULING = "scheduling/delete"
 
+export const UPDATE_SCHEDULING_STATUS = "scheduling/updateStatus"
+
 export const getSchedulings = (schedulings) => {
   return {
     type: GET_ALL_SCHEDULINGS,
@@ -45,7 +47,6 @@ export const editScheduling = (scheduling) => {
   }
 }
 
-
 export const deleteScheduling = (schedulingId) => {
   return {
     type: DELETE_SCHEDULING,
@@ -53,6 +54,12 @@ export const deleteScheduling = (schedulingId) => {
   }
 }
 
+export const updateSchedulingStatus = (schedulingId, status) => {
+  return {
+    type: UPDATE_SCHEDULING_STATUS,
+    status
+  }
+}
 
 //thunk
 export const fetchSchedulings = () => async (dispatch) => {
@@ -123,6 +130,18 @@ export const updateScheduling = (scheduling) => async (dispatch) => {
   }
 };
 
+export const changeSchedulingStatus = (schedulingId, status) => async (dispatch) => {
+  const response = fetch(`/api/schedulings/${schedulingId}/status`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status }),
+  })
+  if (response.ok) {
+    dispatch(updateSchedulingStatus(schedulingId, status))
+  }
+}
 
 export const removeScheduling = (schedulingId) => async (dispatch) => {
   const response = await fetch(`/api/schedulings/${schedulingId}`, {
@@ -158,6 +177,12 @@ const schedulingsReducer = (state = initialState, action) => {
     case EDIT_SCHEDULING:
       newState.currentUserScheduling = { ...state.currentUserScheduling }
       newState.currentUserScheduling[action.scheduling.id] = action.scheduling
+      return newState;
+    case UPDATE_SCHEDULING_STATUS:
+      newState.currentUserScheduling = { ...state.currentUserScheduling };
+      if (newState.currentUserScheduling[action.schedulingId]) {
+        newState.currentUserScheduling[action.schedulingId].status = action.status;
+      }
       return newState;
     case DELETE_SCHEDULING:
       newState.currentUserScheduling = { ...state.currentUserScheduling }

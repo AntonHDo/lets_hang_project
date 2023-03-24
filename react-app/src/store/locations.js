@@ -2,6 +2,8 @@ export const GET_ALL_LOCATIONS = "locations/all"
 
 export const GET_SINGLE_LOCATION = "location"
 
+export const CLEAR_STATE = "location/clear"
+
 export const getLocations = (locations) => {
   return {
     type: GET_ALL_LOCATIONS,
@@ -13,6 +15,12 @@ export const getSingleLocation = (location) => {
   return {
     type: GET_SINGLE_LOCATION,
     location
+  }
+}
+
+export const clearState = () => {
+  return {
+    type: CLEAR_STATE
   }
 }
 
@@ -50,6 +58,9 @@ const locationsReducer = (state = initialState, action) => {
     case GET_SINGLE_LOCATION:
       newState['location'] = action.location;
       return newState;
+    case CLEAR_STATE:
+      newState.product = {}
+      return newState
     default:
       return state
   }

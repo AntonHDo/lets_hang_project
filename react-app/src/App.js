@@ -6,7 +6,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Locations from "./components/Locations";
-import Schedulings from "./components/SchedulingsModal";
 import ClimbersList from "./components/ClimbersList";
 import CurrentUser from "./components/CurrentUser";
 
