@@ -44,8 +44,8 @@ function Navigation({ isLoaded }) {
 				<OpenModalButton
 					buttonText={
 						<>
-							<i class="fa-solid fa-bell"></i>
-							<span>{unreadNotificationsCount}</span>
+							<i class={sessionUser ? "fa-solid fa-bell" : "hidden"}></i>
+							<span className={sessionUser ? "navigationBellNumber" : "hidden"}>{unreadNotificationsCount}</span>
 						</>
 					} modalComponent={
 						<NotificationsModal notifications={notifications} locations={locations} />

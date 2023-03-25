@@ -43,16 +43,16 @@ def create_new_scheduling():
         db.session.add(scheduling)
         db.session.commit()
 
-        notification = Notification(
-            user_id=res["friend_id"],
-            other_user_id=res["user_id"],
-            scheduling_id=scheduling.id,
-            type="scheduling_request",
-            message=f"{scheduling.user.username} wants to schedule a hangout",
-            read=False
-        )
-        db.session.add(notification)
-        db.session.commit()
+        # notification = Notification(
+        #     user_id=res["friend_id"],
+        #     other_user_id=res["user_id"],
+        #     scheduling_id=scheduling.id,
+        #     type="scheduling_request",
+        #     message=f"{scheduling.user.username} wants to schedule a hangout",
+        #     read=False
+        # )
+        # db.session.add(notification)
+        # db.session.commit()
         return scheduling.to_dict()
 
 @schedulings_routes.route("/<int:id>", methods=["DELETE"])

@@ -20,7 +20,8 @@ def get_single_notification(id):
 def create_new_notification():
     res = request.get_json()
     notification = Notification(
-        user_id=res["user_id"], other_user_id=res["other_user_id"],
+        user_id=res["user_id"],
+        other_user_id=res["other_user_id"],
         scheduling_id=res["scheduling_id"],
         type="scheduling_request",
         message=res["message"],

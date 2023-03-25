@@ -32,7 +32,6 @@ const SchedulingsModal = ({ user }) => {
     };
 
     const scheduling = await dispatch(makeScheduling(newScheduling))
-    console.log(scheduling)
 
 
     const notification = {
@@ -43,7 +42,7 @@ const SchedulingsModal = ({ user }) => {
       message: "hi",
       read: false,
     };
-    await dispatch(makeNotification(notification));
+    await dispatch(makeNotification(notification, scheduling));
 
     closeModal()
   }
@@ -51,7 +50,7 @@ const SchedulingsModal = ({ user }) => {
   const handleCancel = () => {
     setShowForm(false)
   }
-  console.log("user from modal", user)
+  // console.log("user from modal", user)
 
   return (
     <div className="schedulingModalContainer">

@@ -53,7 +53,7 @@ const Locations = () => {
   }
 
   const locationsArr = Object.values(locations)
-  console.log("from home page", locationsArr)
+  // console.log("from home page", locationsArr)
 
   return locations && locationsArr && (
     <div className="homePageContainer">

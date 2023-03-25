@@ -43,7 +43,7 @@ export const fetchNotifications = () => async (dispatch, getState) => {
     const data = await response.json();
     const userId = getState().session?.user?.id;
     const filteredData = data.filter(notification => notification.user_id === userId)
-    console.log("thunk filtereddata", filteredData)
+
     let normalizedData = {};
     filteredData.forEach((notification) => (normalizedData[notification.id] = notification));
     dispatch(getNotifications(normalizedData))
@@ -59,22 +59,36 @@ export const fetchSingleNotification = (notificationId) => async (dispatch) => {
   }
 }
 
-export const makeNotification = (newNotification) => async (dispatch) => {
-  const response = await fetch(`/api/notifications/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newNotification),
-  });
+// export const makeNotification = (newNotification) => async (dispatch) => {
+//   const response = await fetch(`/api/notifications/`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(newNotification),
+//   });
 
-  if (response.ok) {
-    const details = await response.json();
-    dispatch(createNotification(details));
-    return details;
+//   if (response.ok) {
+//     const details = await response.json();
+//     dispatch(createNotification(details));
+//     return details;
+//   }
+// };
+export const makeNotification = (notification, scheduling) => async (dispatch) => {
+  notification.scheduling_id = scheduling.id;
+  const res = await fetch('/api/notifications', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(notification)
+  });
+  if (res.ok) {
+    const newNotification = await res.json();
+    dispatch(createNotification(newNotification));
+    return newNotification;
   }
 };
-
 
 export const removeNotification = (notificationId) => async (dispatch) => {
   const response = await fetch(`/api/notifications/${notificationId}`, {
