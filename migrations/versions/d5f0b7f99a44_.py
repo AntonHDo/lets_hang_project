@@ -24,7 +24,8 @@ def upgrade():
         batch_op.alter_column('date',
                existing_type=sa.VARCHAR(),
                type_=sa.Date(),
-               nullable=True)
+               nullable=True,
+               postgresql_using='date::date')
     if environment == "production":
         op.execute(f"ALTER TABLE notifications SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###

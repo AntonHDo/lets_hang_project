@@ -7,14 +7,34 @@ const CurrentUser = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user)
 
-  const schedulings = useSelector(state => state.schedulings)
+  const currentSchedules = useSelector(state => state.schedulings.currentUserSchedulings
+  )
+
+  console.log("curent schedule", currentSchedules)
 
   useEffect(() => {
     dispatch(fetchCurrentUserSchedulings(currentUser?.id))
   }, [dispatch])
 
+  const scheduleArr = Object.values(currentSchedules)
+
+  console.log("curent schedule", scheduleArr)
+
   return (
-    <div>Sup</div>
+    <div className="currentUsersScheduleContainer">
+      <div className="profileContainer">
+        <div className="profileNameAndPicContainer">
+          <h2>My Profile</h2>
+          <div className="profileImageAndFirstNameAndFriends">
+            <img alt="something" />
+            {/* <div className="profileNameAndFriends"> */}
+            <div>{currentUser.first_name} {currentUser.last_name}</div>
+
+            {/* </div> */}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
