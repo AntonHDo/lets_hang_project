@@ -7,7 +7,9 @@ Create Date: 2023-03-25 22:50:26.674943
 """
 from alembic import op
 import sqlalchemy as sa
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'd5f0b7f99a44'
@@ -23,7 +25,8 @@ def upgrade():
                existing_type=sa.VARCHAR(),
                type_=sa.Date(),
                nullable=True)
-
+    if environment == "production":
+        op.execute(f"ALTER TABLE notifications SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
