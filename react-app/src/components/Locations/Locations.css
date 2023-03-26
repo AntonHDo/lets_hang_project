@@ -1,0 +1,15 @@
+.homeLocationsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navLinkHomePage {
+  display: block;
+  width: 80%;
+}
+
+.homePageLocationAndPeople {
+  display: flex;
+  justify-content: space-between;
+}

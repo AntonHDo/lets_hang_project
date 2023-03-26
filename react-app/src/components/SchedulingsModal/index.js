@@ -14,6 +14,7 @@ const SchedulingsModal = ({ user }) => {
   const [date, setDate] = useState("")
   const [timeStart, setTimeStart] = useState("")
   const [timeEnd, setTimeEnd] = useState("")
+  const [status, setStatus] = useState("pending")
   const handleScheduleClick = () => {
     setShowForm(true);
   };
@@ -28,7 +29,7 @@ const SchedulingsModal = ({ user }) => {
       user_id: currentUser.id,
       friend_id: user.id,
       location_id: user.location_id,
-      status: "pending"
+      status: status
     };
 
     const scheduling = await dispatch(makeScheduling(newScheduling))
@@ -50,6 +51,8 @@ const SchedulingsModal = ({ user }) => {
   const handleCancel = () => {
     setShowForm(false)
   }
+
+
   // console.log("user from modal", user)
 
   return (

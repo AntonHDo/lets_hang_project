@@ -7,6 +7,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import "./Locations.css"
 
 const Locations = () => {
   const dispatch = useDispatch();
@@ -60,14 +61,17 @@ const Locations = () => {
       {userLoggedIn()}
       <div className="homeLocationsContainer">
         {locationsArr?.map((location) => (
-          <NavLink key={location.id} to={`/locations/${location.id}`}>
+          <NavLink className="navLinkHomePage" key={location.id} to={`/locations/${location.id}`}>
             <img src={location.preview_img} />
-            <div>{location.location_name}</div>
-            <div className="numberOfPeopleAndIcon">
-              <div>{location?.users?.length}</div>
-              <div><i className="fa-solid fa-user-group"></i></div>
+            <div className="homePageLocationAndPeople">
+              <div>{location.location_name}</div>
+              <div className="numberOfPeopleAndIcon">
+                <div>{location?.users?.length}</div>
+                <div><i className="fa-solid fa-user-group"></i></div>
+              </div>
             </div>
           </NavLink>
+
         ))}
       </div>
       <div className="homeAboutUsAndMissionContainer">

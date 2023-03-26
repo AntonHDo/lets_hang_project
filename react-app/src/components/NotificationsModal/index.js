@@ -1,18 +1,31 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeNotification } from "../../store/notifications";
 import { fetchNotifications } from "../../store/notifications";
+import { updateScheduling } from "../../store/schedulings";
+
 
 const NotificationsModal = ({ notifications, locations }) => {
   const dispatch = useDispatch()
   const notificationsArr = Object.values(notifications)
   const locationsArr = Object.values(locations)
   const { closeModal } = useModal();
+  const [status, setStatus] = useState()
 
 
-  const handleAccept = async (notificationId) => {
+  // useEffect(() => {
+  //   dispatch(updateScheduling(notification.scheduling?.id))
+  // }, [dispatch])
+
+  const handleAccept = async (scheduling, notificationId) => {
     await dispatch(removeNotification(notificationId));
+    const newScheduling = {
+      ...scheduling,
+      status: 'accepted'
+    }
+
+    dispatch(updateScheduling(newScheduling))
     dispatch(fetchNotifications())
     closeModal()
   }
@@ -29,7 +42,7 @@ const NotificationsModal = ({ notifications, locations }) => {
 
         const locationId = notification.scheduling?.location_id;
         const location = locationsArr.find((location) => location.id === locationId);
-
+        const { scheduling } = notification;
 
         return (
           <li key={notification?.id}>
@@ -46,7 +59,7 @@ const NotificationsModal = ({ notifications, locations }) => {
               minute: "2-digit",
               hour12: true,
             })}
-            <button onClick={() => handleAccept(notification.id)}>Accept</button>
+            <button onClick={() => handleAccept(scheduling, notification.id)}>Accept</button>
             <button onClick={() => handleDecline(notification.id)}>Decline</button>
           </li>
         )
