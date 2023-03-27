@@ -1,47 +1,82 @@
 import React, { useState, useEffect } from "react";
+import * as sessionActions from "../../store/session";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { Link } from "react-router-dom";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [disabled, setDisabled] = useState(true)
+  const [showErrorsList, setShowErrorsList] = useState(false);
+  const [loginButtonClassName, setLoginButtonClassName] = useState("disabled")
   const { closeModal } = useModal();
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    } else {
-      closeModal()
-    }
+    setErrors([]);
+    return dispatch(login({ email, password }))
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+  };
+
+  const handleDemoClick = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(login("demo@aa.io", "password"))
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          setShowErrorsList(true)
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+  };
+  const handleMarnieClick = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(login("marnie@aa.io", "password"))
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          setShowErrorsList(true)
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
   };
 
   useEffect(() => {
-    return () => {
-      closeModal();
-    };
-  }, [closeModal]);
-  const handleDemo1Click = async () => {
-    const data = await dispatch(login("demo@aa.io", "password"))
-    closeModal()
-  }
+    if (email.length < 4 || password.length < 6) {
+      setDisabled(true)
+      setLoginButtonClassName("disabled")
+      return
+    }
+    setLoginButtonClassName("enabled")
+    setDisabled(false)
+  }, [password, email])
 
-  const handleDemo2Click = async () => {
-    const data = await dispatch(login("marnie@aa.io", "password"))
-    closeModal()
-  }
+  const errorsListName = "error-list" + (showErrorsList ? "" : " hidden");
+
+  const formForLogin = "login-form" + (showErrorsList ? " with-errors" : "");
+
 
   return (
     <>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+      <form className={formForLogin} onSubmit={handleSubmit}>
+        <ul className={errorsListName}>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -64,12 +99,14 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
-        <div className="loginDemoUser1Container">
-          <button className="loginDemoUser1Button" onClick={handleDemo1Click}>Demo User 1</button>
+        <button type="submit" className={loginButtonClassName} disabled={disabled}>Log In</button>
+
+        <div className="loginDemoUserContainer">
+          <Link onClick={handleDemoClick}>Demo User: Demo</Link>
         </div>
-        <div className="loginDemoUser2Container">
-          <button className="loginDemoUser2Button" onClick={handleDemo2Click}>Demo User 2</button>
+
+        <div className="loginMarnieContainer">
+          <Link onClick={handleMarnieClick}>Demo User: Marnie</Link>
         </div>
       </form>
     </>

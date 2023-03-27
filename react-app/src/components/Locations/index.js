@@ -23,7 +23,7 @@ const Locations = () => {
       return (
         <div className="loggedOutHomeBannerContainer">
           <h2>Make the first move!</h2>
-          <div>Start meeting new people in your area! If you already have an account, sign in to use Bumble on the web.</div>
+          <div>Start meeting new people in your area! If you already have an account, sign in on the web!</div>
 
           <div>
             <OpenModalButton

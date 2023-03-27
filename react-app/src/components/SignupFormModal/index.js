@@ -1,17 +1,30 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import { fetchLocations } from "../../store/locations";
 import "./SignupForm.css";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
+	const locations = useSelector(state => state.locations.locations)
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [dateOfBirth, setDateOfBirth] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [profilePicture, setProfilePicture] = useState("");
+	const [location, setLocations] = useState("");
+	const [gender, setGender] = useState("");
+	const [bio, setBio] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+
+	useEffect(() => {
+		dispatch(fetchLocations())
+	}, [dispatch])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
