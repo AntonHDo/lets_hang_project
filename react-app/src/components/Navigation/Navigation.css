@@ -1,5 +1,10 @@
 .profile-dropdown {
   position: absolute;
+  background-color: white;
+  box-shadow: 0 0 10px 1px rgb(238, 238, 238);
+  padding: 12px;
+  border-radius: 12px;
+  border: lightgray solid 1px;
 }
 
 .hidden {

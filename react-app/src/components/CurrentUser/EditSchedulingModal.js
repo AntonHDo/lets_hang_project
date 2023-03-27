@@ -32,6 +32,7 @@ const EditSchedulingModal = ({ schedule, onDeleted }) => {
 
   return (
     <div className="editSchedulingContainer">
+      <h2>Edit Hang Out Times</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="date">Date:</label>
         <input

@@ -10,10 +10,15 @@ import DeleteSchedulingModal from "./DeleteSchedulingModal";
 const CurrentUser = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user)
-
-  const currentSchedules = useSelector(state => state.schedulings.currentUserSchedulings
-  )
+  const currentSchedules = useSelector(state => state.schedulings.currentUserSchedulings)
   const [refresh, setRefresh] = useState(false)
+
+  const createDateWithUTC = (dateString) => {
+    const date = new Date(dateString);
+    return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+  }
+
+
 
   useEffect(async () => {
     await dispatch(fetchCurrentUserSchedulings(currentUser?.id))
@@ -56,7 +61,7 @@ const CurrentUser = () => {
               <div className="friendNameAndSchedule">
                 <div>{schedule.friend.first_name} {schedule.friend.last_name}</div>
                 <div>
-                  {new Date(schedule.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}, {new Date(`January 1, 1970 ${schedule.time_start}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })} to {new Date(`January 1, 1970 ${schedule.time_end}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })}
+                  {createDateWithUTC(schedule.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}, {new Date(`January 1, 1970 ${schedule.time_start}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })} to {new Date(`January 1, 1970 ${schedule.time_end}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })}
                 </div>
                 <div>
                   Status: {schedule.status.charAt(0).toUpperCase() + schedule.status.slice(1).toLowerCase()}

@@ -74,16 +74,6 @@ const Locations = () => {
 
         ))}
       </div>
-      <div className="homeAboutUsAndMissionContainer">
-        <div className="homeAboutUsContainer">
-          <div>About Us</div>
-          <img alt="nothing yet" />
-        </div>
-        <div className="homeMissionContainer">
-          <div>Mission</div>
-          <img alt="nothing yet" />
-        </div>
-      </div>
     </div>
   )
 }
