@@ -1,0 +1,39 @@
+.profileImageAndFirstNameAndFriends {
+  display: flex
+}
+
+
+
+.profileAndEdit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileBiosContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.otherUserProfilePictureAndDetails {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.friendNameAndSchedule {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+
+}
+
+.schedulingDeleteAndEditButtonContainer {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+.schedulingDeleteButton {
+  padding-left: 10px;
+}

@@ -36,10 +36,10 @@ const SchedulingsModal = ({ user }) => {
 
 
     const notification = {
-      user_id: user.id, // The user who will receive the notification
-      other_user_id: currentUser.id, // The user who is sending the notification
-      scheduling_id: scheduling?.id, // The scheduling ID associated with the notification
-      type: "scheduling_request", // Set a default value for the 'type' field
+      user_id: user.id,
+      other_user_id: currentUser.id,
+      scheduling_id: scheduling?.id,
+      type: "scheduling_request",
       message: "hi",
       read: false,
     };
