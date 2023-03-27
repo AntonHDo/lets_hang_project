@@ -24,12 +24,12 @@ function App() {
           <Route exact path="/">
             <Locations />
           </Route>
-          <Route path="/login" >
+          {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path="/locations/:locationId">
             <ClimbersList />
           </Route>
