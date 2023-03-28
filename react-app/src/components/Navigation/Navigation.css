@@ -1,12 +1,53 @@
 .profile-dropdown {
   position: absolute;
   background-color: white;
-  box-shadow: 0 0 10px 1px rgb(238, 238, 238);
   padding: 12px;
   border-radius: 12px;
   border: lightgray solid 1px;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+
+.site-nav {
+  background: var(--darkblue);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 98;
+
+}
+
+.navigationBellNumber {
+  color: white;
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+.fas,
+.fa-user-circle {
+  font-size: 24px;
+  color: white;
+  margin-left: 10px;
+}
+
+.fa-solid.fa-bell {
+  color: white;
+  font-size: 22px;
+}
+
+.site-nav .nav-list {
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+
+.nav-home-button {
+  color: white;
+  font-size: 20px;
 }

@@ -6,6 +6,10 @@
   --footer-bg-color: #5B6770;
   --blue: #009CA6;
   --green: #00BB7E;
+  --lightgray: #E3E5E6;
+  --gray: #C1C6C8;
+  --darkblue: #00205b;
+
 }
 
 
@@ -52,6 +56,7 @@ body {
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  background-color: var(--lightgray);
 }
 
 h1 {
@@ -87,6 +92,11 @@ h6 {}
 .our-mission {
   flex-direction: row-reverse;
   background: var(--green);
+}
+
+.splash-page-content {
+  background: var(--gray);
+  padding: 1%;
 }
 
 .splash-page-content .text-container {

@@ -1,0 +1,67 @@
+.climbersListImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  aspect-ratio: 22/9;
+}
+
+.climbersListImageContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.climbersListImageContainer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.climbersListGymName {
+  color: white;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+}
+
+.climbersListProfileContainer {
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.climbersListProfilePictureContainer {
+  display: flex;
+  align-items: center;
+  padding: 50px 100px;
+  border-radius: 2px;
+  background-color: var(--blue);
+  gap: 100px;
+  justify-content: center;
+}
+
+.climbersListNameAndAboutMeContaineer {
+  padding: 10px;
+  font-size: 20px;
+}

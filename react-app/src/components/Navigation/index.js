@@ -36,29 +36,29 @@ function Navigation({ isLoaded }) {
 
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			<li>
-				<OpenModalButton
-					buttonText={
-						<>
-							<i class={sessionUser ? "fa-solid fa-bell" : "hidden"}></i>
-							<span className={sessionUser ? "navigationBellNumber" : "hidden"}>{unreadNotificationsCount}</span>
-						</>
-					} modalComponent={
-						<NotificationsModal notifications={notifications} locations={locations} />
-					}
-					disabled={unreadNotificationsCount === 0}
-				/>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
+		<nav className='site-nav'>
+			<ul className='nav-list'>
+				<li >
+					<NavLink className="nav-home-button" exact to="/">Lets Hang!</NavLink>
 				</li>
-			)}
-		</ul>
+				<li>
+					<OpenModalButton
+						buttonText={
+							<>
+								<i class={sessionUser ? "fa-solid fa-bell" : "hidden"}></i>
+								<span className={sessionUser ? "navigationBellNumber" : "hidden"}>{unreadNotificationsCount}</span>
+							</>
+						} modalComponent={
+							<NotificationsModal notifications={notifications} locations={locations} />
+						}
+						disabled={unreadNotificationsCount === 0}
+					/>
+					{isLoaded && (
+						<ProfileButton user={sessionUser} />
+					)}
+				</li>
+			</ul>
+		</nav>
 	);
 }
 

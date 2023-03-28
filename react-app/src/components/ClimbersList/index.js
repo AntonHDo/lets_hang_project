@@ -6,6 +6,7 @@ import { fetchSingleLocation } from "../../store/locations";
 import OpenModalButton from "../OpenModalButton";
 import SchedulingsModal from "../SchedulingsModal";
 import { clearState } from "../../store/locations";
+import "./ClimberList.css"
 
 const ClimbersList = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const ClimbersList = () => {
     <div className="climbersListWholeContainer">
       <div className="climbersListImageContainer">
         <img src={location.preview_img} />
-        <div>{location.location_name}</div>
+        <div className="climbersListGymName">{location.location_name}</div>
       </div>
       <div className="climbersListProfileContainer">
         <h2>Members</h2>
