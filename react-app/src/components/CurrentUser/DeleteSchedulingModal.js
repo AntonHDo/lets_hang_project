@@ -19,7 +19,7 @@ const DeleteSchedulingModal = ({ scheduleId, onDeleted }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <h2>Confirm Delete</h2>
-        <p>Are you sure you want to delete this scheduling??</p>
+        <p>Are you sure you want to delete this scheduling?</p>
         <button className="yes-please-delete" type="submit" onClick={handleSubmit}>Yes (Delete Scheduling)</button>
         <button className="no-do-not-delete" type="button" onClick={closeModal}>No (Keep Scheduling)</button>
       </form>

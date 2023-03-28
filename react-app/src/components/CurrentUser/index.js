@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import EditSchedulingModal from "./EditSchedulingModal";
 import DeleteSchedulingModal from "./DeleteSchedulingModal";
 import EditProfileModal from "./EditProfileModal";
+import DeleteUserModal from "./DeleteUserModal";
 
 const CurrentUser = () => {
   const dispatch = useDispatch();
@@ -43,11 +44,18 @@ const CurrentUser = () => {
         <div className="profileNameAndPicContainer">
           <div className="profileAndEdit">
             <div>My Profile</div>
-            <div className="schedulingDeleteButton"> <OpenModalButton
-              buttonText="Edit Profile"
-              modalComponent={
-                <EditProfileModal currentUser={currentUser} onDeleted={setRefresh} />
-              } /></div>
+            <div className="deleteAndEditProfileButtons">
+              <div className="userAccountDeleteButton"> <OpenModalButton
+                buttonText="Delete Account"
+                modalComponent={
+                  <DeleteUserModal currentUserId={currentUser.id} onDeleted={setRefresh} />
+                } /></div>
+              <div className="editProfileButton"> <OpenModalButton
+                buttonText="Edit Profile"
+                modalComponent={
+                  <EditProfileModal currentUser={currentUser} onDeleted={setRefresh} />
+                } /></div>
+            </div>
           </div>
           <div className="profileImageAndFirstNameAndFriends">
             <img src={currentUser?.profile_picture} alt="something" />

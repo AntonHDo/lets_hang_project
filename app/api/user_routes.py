@@ -50,3 +50,19 @@ def edit_user_info(id):
         user.about_me = res.get("about_me", user.about_me)
         db.session.commit()
         return user.to_dict()
+
+
+@user_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    """
+    Delete a user by id and returns a success message
+    """
+    user = User.query.get(id)
+
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return {'message': f'Successfully deleted user with id {id}'}
+    else:
+        return {'error': f'User with id {id} not found'}, 404
