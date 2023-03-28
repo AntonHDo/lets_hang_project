@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import * as sessionActions from "../../store/session";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -10,26 +9,50 @@ function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
   const [disabled, setDisabled] = useState(true)
   const [showErrorsList, setShowErrorsList] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [invalidCredentials, setInvalidCredentials] = useState(false); // New state for invalid credentials error
   const [loginButtonClassName, setLoginButtonClassName] = useState("disabled")
   const { closeModal } = useModal();
 
+  // Add a more comprehensive email validation check, looks crazy but it justs shows the possible combos for emails
+  const isValidEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    let errors = [];
+    if (!isValidEmail(email)) {
+      errors.push('Invalid email.');
+    }
+    if (password.length < 6) {
+      errors.push('Password is too short');
+    }
+    return errors;
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
-    return dispatch(login({ email, password }))
-      .then(closeModal)
-      .catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
-      );
-  };
+    const formErrors = validateForm();
+    setErrors(formErrors);
+    setShowErrorsList(true);
 
+    if (formErrors.length > 0) {
+      return;
+    }
+
+    // const res = await dispatch(login({ email, password }));
+
+    const loginErrors = await dispatch(login(email, password));
+
+    if (loginErrors) {
+      setErrors(loginErrors);
+    } else {
+      closeModal();
+    }
+  };
   const handleDemoClick = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -77,28 +100,39 @@ function LoginFormModal() {
       <h1>Log In</h1>
       <form className={formForLogin} onSubmit={handleSubmit}>
         <ul className={errorsListName}>
+          {invalidCredentials && <li>Invalid credentials. Please try again.</li>} {/* Display invalid credentials error after 1000 hrs of s */}
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+        <div className="input-container">
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {email.length < 4 && (
+              <div className="error-message">Email is too short.</div>
+            )}
+          </label>
+        </div>
+        <div className="input-container">
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            {password.length < 6 && (
+              <div className='error-message'>Password is too short</div>
+            )}
+          </label>
+        </div>
         <button type="submit" className={loginButtonClassName} disabled={disabled}>Log In</button>
 
         <div className="loginDemoUserContainer">
