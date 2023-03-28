@@ -11,8 +11,21 @@
 
 .profileBiosContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+
+}
+
+.otherUsersScheduleContainer {
   width: 50%;
+  text-align: left;
+}
+
+.currentUsersBio {
+  width: 50%;
+  text-align: left;
+
 }
 
 .otherUserProfilePictureAndDetails {
@@ -36,4 +49,8 @@
 
 .schedulingDeleteButton {
   padding-left: 10px;
+}
+
+.currentUsersScheduleContainer {
+  margin-top: 4%;
 }

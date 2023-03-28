@@ -64,7 +64,7 @@ const CurrentUser = () => {
         </div>
       </div>
       <div className="profileBiosContainer">
-        <div>{currentUser.about_me}</div>
+        <div className="currentUsersBio">Bio: {currentUser.about_me}</div>
         <div className="otherUsersScheduleContainer">
           My Schedulings
           {scheduleArr.map(schedule => (
