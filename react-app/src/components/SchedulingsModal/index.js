@@ -16,11 +16,15 @@ const SchedulingsModal = ({ user }) => {
   const [timeStart, setTimeStart] = useState("")
   const [timeEnd, setTimeEnd] = useState("")
   const [status, setStatus] = useState("pending")
+
   const [errors, setErrors] = useState({
     date: "",
     timeStart: "",
     timeEnd: ""
   })
+
+
+  const isFormValid = date && timeStart && timeEnd;
 
   useEffect(() => {
     dispatch(fetchSchedulings())
@@ -104,6 +108,7 @@ const SchedulingsModal = ({ user }) => {
     const hasErrors = Object.values(validationErrors).some((error) => error !== "");
 
     if (hasErrors) {
+      console.log(errors)
       return
     }
     //.some is an array method, test to see if at least one element in aray passes test and returns boolean.
@@ -152,7 +157,18 @@ const SchedulingsModal = ({ user }) => {
         )}
         {showForm && (
           <form onSubmit={handleSubmit}>
-            {errors.date && <div className="error-message">{errors.date}</div>}
+            {Object.values(errors).map((value, index) => {
+              if (value) {
+                return (
+                  <div key={index} className="error-message">
+                    {value}
+                  </div>
+                );
+              }
+              return null;
+            })}
+            {/* {errors.date && <div className="error-message">{errors.date}</div>}
+            {errors.conflict && <div className="error-message">{errors.conflict}</div>} */}
             <label htmlFor="date">Date:</label>
             <input
               type="date"
@@ -160,6 +176,7 @@ const SchedulingsModal = ({ user }) => {
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
+            {/* {errors.timeStart && <div className="error-message">{errors.timeStart}</div>} */}
             <label htmlFor="timeStart">Start Time:</label>
             <input
               type="time"
@@ -167,6 +184,7 @@ const SchedulingsModal = ({ user }) => {
               value={timeStart}
               onChange={(e) => setTimeStart(e.target.value)}
             />
+            {/* {errors.timeEnd && <div className="error-message">{errors.timeEnd}</div>} */}
             <label htmlFor="timeEnd">End Time:</label>
             <input
               type="time"
@@ -174,7 +192,7 @@ const SchedulingsModal = ({ user }) => {
               value={timeEnd}
               onChange={(e) => setTimeEnd(e.target.value)}
             />
-            <button type="submit">Lets Hang!</button>
+            <button type="submit" disabled={!isFormValid}>Lets Hang!</button>
             <button type="button" onClick={handleCancel}>Cancel</button>
           </form>
         )}
