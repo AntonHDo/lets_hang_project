@@ -45,7 +45,10 @@ function SignupPageOne({
   return (
     <>
       <h1>Sign Up</h1>
-      <form >
+      <form autoComplete="off">
+        <input type="text" name="username" autoComplete="username" style={{ display: "none" }} />
+        <input type="password" name="password" autoComplete="current-password" style={{ display: "none" }} />
+
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -84,6 +87,7 @@ function SignupPageOne({
         <label>
           Email
           <input
+            autoComplete="off"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -93,6 +97,7 @@ function SignupPageOne({
         <label>
           Username
           <input
+            autoComplete="off"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -103,6 +108,7 @@ function SignupPageOne({
         <label>
           Password
           <input
+            autoComplete="off"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +124,7 @@ function SignupPageOne({
             required
           />
         </label>
-        <button onClick={(e) => {
+        <button type="button" onClick={(e) => {
           e.preventDefault();
           handleSaveStepOne();
         }} disabled={disableNext}>Next</button>

@@ -98,41 +98,41 @@ function LoginFormModal() {
   return (
     <>
       <h1>Log In</h1>
-      <form className={formForLogin} onSubmit={handleSubmit}>
+      <form className={formForLogin} autoComplete="off" onSubmit={handleSubmit}>
+        <input type="text" name="username" autoComplete="username" style={{ display: "none" }} />
+        <input type="password" name="password" autoComplete="current-password" style={{ display: "none" }} />
         <ul className={errorsListName}>
           {invalidCredentials && <li>Invalid credentials. Please try again.</li>} {/* Display invalid credentials error after 1000 hrs of s */}
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <div className="input-container">
-          <label>
-            Email
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            {email.length < 4 && (
-              <div className="error-message">Email is too short.</div>
-            )}
-          </label>
-        </div>
-        <div className="input-container">
-          <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {password.length < 6 && (
-              <div className='error-message'>Password is too short</div>
-            )}
-          </label>
-        </div>
+
+        <label>
+          Email
+          <input
+            autoComplete="off"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+        </label>
+
+
+        <label>
+          Password
+          <input
+            autoComplete="off"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+        </label>
+
         <button type="submit" className={loginButtonClassName} disabled={disabled}>Log In</button>
 
         <div className="loginDemoUserContainer">

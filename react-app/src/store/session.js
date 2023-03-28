@@ -176,6 +176,30 @@ export const saveStepTwoData = (location, gender, bio, profilePicture) => async 
 	dispatch(setAdditionalUserInfo({ ...stepTwoData }));
 };
 
+
+export const checkExistingUsernameEmail = (username, email) => async (dispatch) => {
+	const response = await fetch('/api/users/check', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			username,
+			email,
+		}),
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		return data;
+	} else {
+		return {
+			usernameExists: false,
+			emailExists: false,
+		};
+	}
+};
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:

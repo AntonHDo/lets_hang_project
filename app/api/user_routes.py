@@ -66,3 +66,16 @@ def delete_user(id):
         return {'message': f'Successfully deleted user with id {id}'}
     else:
         return {'error': f'User with id {id} not found'}, 404
+
+
+@user_routes.route('/check', methods=['POST'])
+def check_username_email():
+    """check if username and email exist"""
+    data = request.get_json()
+    username_exists = User.query.filter(User.username == data['username']).first() is not None
+    email_exists = User.query.filter(User.email == data['email']).first() is not None
+
+    return jsonify({
+        'usernameExists': username_exists,
+        'emailExists': email_exists
+    })

@@ -21,7 +21,8 @@ function SignupPageTwo({
   bio,
   setBio,
   goToPreviousStep,
-  handleSaveStepTwo }) {
+  handleSaveStepTwo,
+  validateForm }) {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const locations = useSelector(state => state.locations.locations)
@@ -36,12 +37,17 @@ function SignupPageTwo({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const errors = validateForm()
+    if (errors.length === 0) {
+      const defaultImageUrl = "https://i.imgur.com/cXPKYuE.png";
+      const finalProfilePicture = profilePicture || defaultImageUrl;
+      await dispatch(signUp(username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, finalProfilePicture));
+      handleSaveStepTwo();
+      closeModal();
+    } else {
+      setErrors(errors)
+    }
 
-    const defaultImageUrl = "https://i.imgur.com/cXPKYuE.png";
-    const finalProfilePicture = profilePicture || defaultImageUrl;
-    await dispatch(signUp(username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, finalProfilePicture));
-    handleSaveStepTwo();
-    closeModal();
 
   };
 
