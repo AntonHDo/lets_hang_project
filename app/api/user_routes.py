@@ -41,14 +41,11 @@ def edit_user_info(id):
     user = User.query.get(id)
     res = request.get_json()
     if user:
-        user.username = res.get('username', user.username)
-        user.email = res.get('email', user.email)
-        user.password = res.get('password', user.password)
+
         user.first_name = res.get('first_name', user.first_name)
         user.last_name = res.get('last_name', user.last_name)
         user.location_id = res.get('location_id', user.location_id)
         user.profile_picture = res.get('profile_picture', user.profile_picture)
-        user.date_of_birth = res.get('date_of_birth', user.date_of_birth)
         user.gender = res.get("gender", user.gender)
         user.about_me = res.get("about_me", user.about_me)
         db.session.commit()

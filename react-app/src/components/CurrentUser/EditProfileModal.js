@@ -43,17 +43,13 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
       ...currentUser,
       first_name: firstName,
       last_name: lastName,
-      date_of_birth: dateOfBirth,
       location_id: location,
       gender,
       about_me: bio,
       profile_picture: profilePicture
     }
 
-    // Remove email, username, and password from updatedInfo
-    delete updatedInfo.email;
-    delete updatedInfo.username;
-    delete updatedInfo.password;
+
 
     // username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, profilePicture
     await dispatch(editUserInfo(currentUser.id, updatedInfo));
@@ -92,7 +88,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
           />
         </label>
 
-        <label>
+        {/* <label>
           Date Of Birth
           <input
             type="date"
@@ -101,7 +97,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
             required
             placeholder="mm-dd-yyyy"
           />
-        </label>
+        </label> */}
 
         {/* <label>
           Email
@@ -149,7 +145,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
           >
             <option value="" disabled>Select a location</option>
             {locationsArr.map((location) => (
-              <option key={location.id}>
+              <option key={location.id} value={location.id}>
                 {location.location_name}
               </option>
             ))}
