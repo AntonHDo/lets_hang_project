@@ -1,94 +1,103 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
-import { fetchLocations } from "../../store/locations";
+import React, { useState } from "react";
 import "./SignupForm.css";
+import SignupPageOne from "./SignupPageOne";
+import SignupPageTwo from "./SignupPageTwo";
+import { useDispatch } from "react-redux";
+import { saveStepOneData, saveStepTwoData } from "../../store/session";
 
 function SignupFormModal() {
-	const dispatch = useDispatch();
-	const locations = useSelector(state => state.locations.locations)
+	const dispatch = useDispatch()
+	const [step, setStep] = useState(1);
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [profilePicture, setProfilePicture] = useState("");
-	const [location, setLocations] = useState("");
+	const [location, setLocation] = useState("");
 	const [gender, setGender] = useState("");
 	const [bio, setBio] = useState("");
 	const [errors, setErrors] = useState([]);
-	const { closeModal } = useModal();
 
-	useEffect(() => {
-		dispatch(fetchLocations())
-	}, [dispatch])
+	const goToNextStep = () => {
+		setStep(step + 1);
+	};
+	const goToPreviousStep = () => {
+		setStep(step - 1);
+	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
-			if (data) {
-				setErrors(data);
-			} else {
-				closeModal();
-			}
+	const handleSaveStepOne = () => {
+
+		const errors = [];
+
+		if (password !== confirmPassword) {
+			errors.push("Confirm Password field must be the same as the Password field");
+		}
+		if (password.length < 6) {
+			errors.push("Password must be at least 6 characters long");
+		}
+
+		if (errors.length === 0) {
+			setErrors([]);
+			dispatch(saveStepOneData(username, email, password, firstName, lastName, dateOfBirth));
+			goToNextStep();
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+			setErrors(errors);
 		}
 	};
 
+	const handleSaveStepTwo = () => {
+		dispatch(saveStepTwoData(location, gender, bio, profilePicture));
+	};
+
+
 	return (
 		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
-			</form>
+			{step === 1 && (
+				<SignupPageOne
+					email={email}
+					setEmail={setEmail}
+					username={username}
+					setUsername={setUsername}
+					password={password}
+					setPassword={setPassword}
+					confirmPassword={confirmPassword}
+					setConfirmPassword={setConfirmPassword}
+					firstName={firstName}
+					setFirstName={setFirstName}
+					lastName={lastName}
+					setLastName={setLastName}
+					dateOfBirth={dateOfBirth}
+					setDateOfBirth={setDateOfBirth}
+					goToNextStep={goToNextStep}
+					handleSaveStepOne={handleSaveStepOne}
+					errors={errors}
+					setErrors={setErrors}
+				/>
+			)}
+			{step === 2 && (
+				<SignupPageTwo
+					email={email}
+					username={username}
+					password={password}
+					firstName={firstName}
+					lastName={lastName}
+					dateOfBirth={dateOfBirth}
+					profilePicture={profilePicture}
+					setProfilePicture={setProfilePicture}
+					location={location}
+					setLocation={setLocation}
+					gender={gender}
+					setGender={setGender}
+					bio={bio}
+					setBio={setBio}
+					goToNextStep={goToNextStep}
+					goToPreviousStep={goToPreviousStep}
+					handleSaveStepTwo={handleSaveStepTwo}
+				/>
+			)}
 		</>
 	);
 }

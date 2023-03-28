@@ -1,9 +1,19 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask import Blueprint, jsonify, session, request
+from flask_login import current_user, login_user, logout_user, login_required
+from app.models import User, db
+from app.forms import SignUpForm
 
 user_routes = Blueprint('users', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @user_routes.route('/')
 @login_required
@@ -23,3 +33,23 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_user_info(id):
+    user = User.query.get(id)
+    res = request.get_json()
+    if user:
+        user.username = res.get('username', user.username)
+        user.email = res.get('email', user.email)
+        user.password = res.get('password', user.password)
+        user.first_name = res.get('first_name', user.first_name)
+        user.last_name = res.get('last_name', user.last_name)
+        user.location_id = res.get('location_id', user.location_id)
+        user.profile_picture = res.get('profile_picture', user.profile_picture)
+        user.date_of_birth = res.get('date_of_birth', user.date_of_birth)
+        user.gender = res.get("gender", user.gender)
+        user.about_me = res.get("about_me", user.about_me)
+        db.session.commit()
+        return user.to_dict()
