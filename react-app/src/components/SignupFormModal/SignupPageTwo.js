@@ -82,7 +82,7 @@ function SignupPageTwo({
           >
             <option value="" disabled>Select a location</option>
             {locationsArr.map((location) => (
-              <option key={location.id}>
+              <option key={location.id} value={location.id}>
                 {location.location_name}
               </option>
             ))}

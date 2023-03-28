@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField
+from wtforms import StringField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, Regexp
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from app.models import User
@@ -32,4 +32,4 @@ class SignUpForm(FlaskForm):
     date_of_birth = StringField("Date Of Birth", validators=[DataRequired()])
     gender = StringField("Gender", validators=[DataRequired()])
     about_me = TextAreaField("About Me", validators=[DataRequired()])
-    location_id = StringField("Location ID", validators=[DataRequired()])
+    location_id = IntegerField("Location ID", validators=[DataRequired()])

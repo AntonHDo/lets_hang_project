@@ -47,4 +47,5 @@ class User(db.Model, UserMixin):
             'date_of_birth': self.date_of_birth,
             'gender': self.gender,
             'about_me': self.about_me,
+
         }

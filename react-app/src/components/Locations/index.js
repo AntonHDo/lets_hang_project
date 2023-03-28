@@ -45,7 +45,7 @@ const Locations = () => {
 
   // console.log("locations from home page", locations)
   useEffect(() => {
-    dispatch(fetchLocations())
+    // dispatch(fetchLocations())
     dispatch(fetchNotifications())
   }, [dispatch])
 
