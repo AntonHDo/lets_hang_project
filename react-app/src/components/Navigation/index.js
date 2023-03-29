@@ -41,13 +41,16 @@ function Navigation({ isLoaded }) {
 				<li >
 					<NavLink className="nav-home-button" exact to="/">Lets Hang!</NavLink>
 				</li>
-				<li>
+				<li className="nav-search">
+					<input className="nav-search-bar" type="search" placeholder='Feature not yet implimented' />
+				</li>
+				<li className="nav-bar-rightside-container">
 					<OpenModalButton
 						buttonText={
-							<>
+							<div className="nav-bar-bell-and-num">
 								<i class={sessionUser ? "fa-solid fa-bell" : "hidden"}></i>
 								<span className={sessionUser ? "navigationBellNumber" : "hidden"}>{unreadNotificationsCount}</span>
-							</>
+							</div>
 						} modalComponent={
 							<NotificationsModal notifications={notifications} locations={locations} />
 						}

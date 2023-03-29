@@ -31,23 +31,54 @@
 .fa-user-circle {
   font-size: 24px;
   color: white;
-  margin-left: 10px;
+  padding-left: 20px;
 }
 
 .fa-solid.fa-bell {
   color: white;
   font-size: 22px;
+  padding-left: 20px;
 }
 
 .site-nav .nav-list {
-  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   position: relative;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 
 .nav-home-button {
   color: white;
   font-size: 20px;
+  white-space: nowrap;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.nav-bar-rightside-container {
+  display: flex;
+  padding-right: 30px
+}
+
+.nav-bar-bell-and-num {
+  display: flex;
+}
+
+.nav-search-bar {
+  border-radius: 15px;
+  padding: 15px;
+  height: 30px;
+  /* width: 95%; */
+  /* Trying to get rid of white space between -anton */
+  width: 100%;
+}
+
+.nav-search {
+  display: flex;
+  justify-content: center;
+  /* width: 75%; */
+  /* Trying to get rid of white space between -anton */
+  width: 100%;
 }
