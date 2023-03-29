@@ -67,6 +67,7 @@
   border: var(--gray) solid 3px;
   background-color: var(--blue);
   border-radius: 4px;
+  margin-bottom: 5px;
 }
 
 .userAccountDeleteButton button {
