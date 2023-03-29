@@ -26,6 +26,9 @@ const CurrentUser = () => {
     await dispatch(fetchCurrentUserSchedulings(currentUser?.id))
   }, [dispatch, currentUser?.id, currentUser, refresh])
 
+  if (!currentUser) {
+    return <Redirect to='/' />
+  }
 
   if (!currentSchedules) {
     return <div>loading...</div>

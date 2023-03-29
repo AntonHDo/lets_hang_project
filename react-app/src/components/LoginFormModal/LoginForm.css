@@ -1,0 +1,43 @@
+.loginDemoUserContainer {
+  background-color: rgba(0, 187, 126, 0.6);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 0;
+  margin: 15px 0 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.loginMarnieContainer {
+  background-color: rgba(0, 187, 126, 0.6);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 0;
+  margin: 15px 0 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loginMarnieContainer a {
+  color: white
+}
+
+.loginDemoUserContainer a {
+  color: white;
+}
+
+
+#modal-content .demoAndMarnieContainer {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}

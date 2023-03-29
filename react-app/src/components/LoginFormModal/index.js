@@ -135,12 +135,15 @@ function LoginFormModal() {
 
         <button type="submit" className={loginButtonClassName} disabled={disabled}>Log In</button>
 
-        <div className="loginDemoUserContainer">
-          <Link onClick={handleDemoClick}>Demo User: Demo</Link>
-        </div>
+        <div className="demoAndMarnieContainer">
 
-        <div className="loginMarnieContainer">
-          <Link onClick={handleMarnieClick}>Demo User: Marnie</Link>
+          <div className="loginDemoUserContainer">
+            <Link onClick={handleDemoClick}>Demo User: Demo</Link>
+          </div>
+
+          <div className="loginMarnieContainer">
+            <Link onClick={handleMarnieClick}>Demo User: Marnie</Link>
+          </div>
         </div>
       </form>
     </>
