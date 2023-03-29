@@ -7,6 +7,10 @@
 .profileAndEdit {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: var(--blue) solid 5px;
+  margin: 5px;
 }
 
 .profileBiosContainer {
@@ -39,6 +43,35 @@
   flex-direction: column;
   margin-left: 20px;
 
+}
+
+.deleteAndEditProfileButtons {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.editProfileButton {
+  border: var(--gray) solid 3px;
+  background-color: var(--blue);
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.editProfileButton button {
+  color: white;
+  padding: 5px;
+}
+
+.userAccountDeleteButton {
+  border: var(--gray) solid 3px;
+  background-color: var(--blue);
+  border-radius: 4px;
+}
+
+.userAccountDeleteButton button {
+  color: white;
+  padding: 5px;
 }
 
 .schedulingDeleteAndEditButtonContainer {

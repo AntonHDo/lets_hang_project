@@ -41,6 +41,7 @@ const ClimbersList = () => {
         <h2>Members</h2>
         {locationUser.map(user => (
           user.id !== currentUser.id ? (
+
             <OpenModalButton key={user.id} buttonText={<div className="climbersListProfilePictureContainer" >
               <img src={user.profile_picture} />
               <div className="climbersListNameAndAboutMeContaineer">

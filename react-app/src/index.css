@@ -29,6 +29,24 @@ button {
   margin: 0;
 }
 
+.non-modal button {
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  white-space: nowrap;
+  min-width: 25%;
+  max-width: 100%;
+  justify-content: center;
+  background-color: var(--darkblue);
+  padding: 7px;
+  width: 5%;
+  overflow: hidden;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
 .site-button {
   border-radius: 10px;
 }
