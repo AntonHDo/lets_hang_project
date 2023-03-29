@@ -42,7 +42,8 @@ function Navigation({ isLoaded }) {
 					<NavLink className="nav-home-button" exact to="/">Lets Hang!</NavLink>
 				</li>
 				<li className="nav-search">
-					<input className="nav-search-bar" type="search" placeholder='Feature not yet implimented' />
+					<input
+						readOnly className="nav-search-bar" type="search" placeholder='Feature not yet implimented' />
 				</li>
 				<li className="nav-bar-rightside-container">
 					<OpenModalButton
