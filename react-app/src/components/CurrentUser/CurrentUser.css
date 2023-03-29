@@ -52,5 +52,17 @@
 }
 
 .currentUsersScheduleContainer {
-  margin-top: 4%;
+  padding-top: 7%;
+  position: relative;
+  z-index: 1;
 }
+
+
+#modal-content .editSchedulingForm {
+  align-items: normal;
+}
+
+
+/* .editSchedulingForm label {
+  padding-top: 10px;
+} */

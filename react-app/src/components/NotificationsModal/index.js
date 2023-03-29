@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { removeNotification } from "../../store/notifications";
 import { fetchNotifications } from "../../store/notifications";
 import { updateScheduling } from "../../store/schedulings";
-
+import './NotificationsModal.css'
 
 const NotificationsModal = ({ notifications, locations }) => {
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const NotificationsModal = ({ notifications, locations }) => {
   }
 
   return (
-    <ul>
+    <ul className="nofitications-container no-padding">
       {notificationsArr.map((notification) => {
 
         const locationId = notification.scheduling?.location_id;
@@ -45,7 +45,7 @@ const NotificationsModal = ({ notifications, locations }) => {
         const { scheduling } = notification;
 
         return (
-          <li key={notification?.id}>
+          <li className="notifications-list" key={notification?.id}>
             {notification?.other_user.username} wants to schedule a Hang out at {location?.location_name}, {new Date(notification?.scheduling?.date).toLocaleString("en-US", {
               day: "2-digit",
               month: "short",

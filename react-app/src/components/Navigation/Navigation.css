@@ -1,10 +1,77 @@
 .profile-dropdown {
+  margin-top: 29px;
+  margin-right: 29px;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  width: 10vw;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, .2);
+  transition: all 0.3s ease-out;
+  transform: translateY(0);
+  max-width: 300px;
+  border-color: var(--lightgray);
+}
+
+.profile-dropdown.hidden {
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(-5%);
+  pointer-events: none;
+}
+
+.profile-dropdown li {
+  cursor: pointer;
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+  margin: 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.profile-dropdown a {
+  text-decoration: none;
+  color: black;
+}
+
+.profile-dropdown li:first-child {
+  cursor: default;
+}
+
+.profile-dropdown nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-in-login-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.sign-in-login-button button {
+  cursor: pointer;
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.nav-bar-log-out-button {
+  cursor: pointer;
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+  font-size: 1rem;
+}
+
+/* .profile-dropdown {
   position: absolute;
   background-color: white;
   padding: 12px;
   border-radius: 12px;
   border: lightgray solid 1px;
-}
+} */
 
 .hidden {
   display: none !important;

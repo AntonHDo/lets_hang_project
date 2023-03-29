@@ -113,7 +113,7 @@ const EditSchedulingModal = ({ schedule, onDeleted }) => {
   return (
     <div className="editSchedulingContainer">
       <h2>Edit Hang Out Times</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="editSchedulingForm" onSubmit={handleSubmit}>
         {Object.values(errors).map((value, index) => {
           if (value) {
             return (

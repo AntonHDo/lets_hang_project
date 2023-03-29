@@ -3,13 +3,13 @@
 
 /* Variables */
 :root {
-  --footer-bg-color: #5B6770;
+  --footer-bg-color: rgb(91, 103, 112);
   --blue: #009CA6;
   --green: #00BB7E;
   --lightgray: #E3E5E6;
   --gray: #C1C6C8;
-  --darkblue: #00205b;
-
+  --darkblue: rgb(0, 32, 91);
+  --darkblueopacity: rgba(0, 32, 91, 0.3)
 }
 
 

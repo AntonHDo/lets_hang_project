@@ -62,7 +62,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>Update Profile</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (

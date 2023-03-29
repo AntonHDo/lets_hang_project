@@ -49,11 +49,11 @@ function ProfileButton({ user }) {
             <li>Hi {user.first_name}!</li>
             <li><NavLink to="/current">My Page</NavLink></li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="nav-bar-log-out-button" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
-          <>
+          <div className="sign-in-login-button">
             <OpenModalButton
               buttonText="Log In"
               onItemClick={closeMenu}
@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </ul>
     </>
