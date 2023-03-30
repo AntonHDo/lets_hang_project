@@ -20,10 +20,6 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
   const [disable, setDisable] = useState(true);
   const [errors, setErrors] = useState([]);
 
-  function isImage(url) {
-    return /(.*)(\.png|.jpg|.jpeg)/.test(url);
-  }
-
   useEffect(() => {
     if (
       firstName !== "" &&
@@ -54,6 +50,8 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
     }
 
 
+
+    // username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, profilePicture
     await dispatch(editUserInfo(currentUser.id, updatedInfo));
 
     closeModal();
@@ -90,7 +88,54 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
           />
         </label>
 
+        {/* <label>
+          Date Of Birth
+          <input
+            type="date"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+            required
+            placeholder="mm-dd-yyyy"
+          />
+        </label> */}
 
+        {/* <label>
+          Email
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label> */}
+        {/* <label>
+          Username
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </label> */}
+
+        {/* <label>
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Confirm Password
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </label> */}
         <label>
           Location
           <select

@@ -1,0 +1,46 @@
+.schedulingModalDate,
+.schedulingModalTimeStart,
+.schedulingModalTimeEnd {
+  width: 100%;
+
+}
+
+.schedulingModalProfilePicture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.schedulingModalNameAndAbout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.schedulingFirstNameAndLast {
+  padding-bottom: 4px;
+}
+
+
+.schedulingProfilePictureContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  border: var(--blue) solid 3px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+}
+
+.schedulingProfilePictureContainer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}

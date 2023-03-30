@@ -5,6 +5,7 @@ import { useModal } from "../../context/Modal";
 import { makeScheduling } from "../../store/schedulings";
 import { makeNotification } from "../../store/notifications";
 import { fetchSchedulings } from "../../store/schedulings";
+import './SchedulingsModal.css'
 
 const SchedulingsModal = ({ user }) => {
   const dispatch = useDispatch();
@@ -144,9 +145,11 @@ const SchedulingsModal = ({ user }) => {
   return (
     <div className="schedulingModalContainer">
       <div className="schedulingModalProfilePicture">
-        <img src={user.profile_picture} />
+        <div className="schedulingProfilePictureContainer">
+          <img src={user.profile_picture} />
+        </div>
         <div className="schedulingModalNameAndAbout">
-          <div>{user.first_name} {user.last_name}</div>
+          <div className="schedulingFirstNameAndLast">{user.first_name} {user.last_name}</div>
           <div>{user.about_me}</div>
         </div>
       </div>
