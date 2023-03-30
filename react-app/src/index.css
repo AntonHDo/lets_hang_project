@@ -184,6 +184,12 @@ footer.site-footer {
 
 .site-footer .links {
   display: flex;
+
+}
+
+.fa-linkedin {
+  color: var(--footer-bg-color);
+  font-size: 24px;
 }
 
 .site-footer .links .icon-wrap {
@@ -199,6 +205,10 @@ footer.site-footer {
 }
 
 .site-footer .icon-wrap svg {
+  padding: 5px;
+}
+
+.site-footer .icon-wrap .fa-brands {
   padding: 5px;
 }
 
