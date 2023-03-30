@@ -124,6 +124,11 @@
   padding-right: 20px;
 }
 
+.fa-mountain {
+  padding-right: 10px;
+  font-size: 30px;
+}
+
 .nav-bar-rightside-container {
   display: flex;
   padding-right: 30px

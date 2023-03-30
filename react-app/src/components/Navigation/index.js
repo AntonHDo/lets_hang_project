@@ -39,7 +39,7 @@ function Navigation({ isLoaded }) {
 		<nav className='site-nav'>
 			<ul className='nav-list'>
 				<li >
-					<NavLink className="nav-home-button" exact to="/">Lets Hang!</NavLink>
+					<NavLink className="nav-home-button" exact to="/"><i class="fa-solid fa-mountain"></i> Lets Hang!</NavLink>
 				</li>
 				<li className="nav-search">
 					<input
