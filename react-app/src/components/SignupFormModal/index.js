@@ -37,23 +37,6 @@ function SignupFormModal() {
 
 	const validateForm = () => {
 		const errors = []
-		// const requiredFields = [
-		// 	firstName,
-		// 	lastName,
-		// 	dateOfBirth,
-		// 	email,
-		// 	username,
-		// 	password,
-		// 	confirmPassword,
-		// 	location,
-		// 	gender,
-		// 	bio,
-		// ]
-		// requiredFields.forEach((field) => {
-		// 	if (field === "") {
-		// 		errors.push(`Field ${field} is required.`)
-		// 	}
-		// })
 
 		if (!isValidEmail(email)) {
 			errors.push('Invalid email.');

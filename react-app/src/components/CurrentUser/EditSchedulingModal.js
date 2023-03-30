@@ -14,13 +14,14 @@ const EditSchedulingModal = ({ schedule, onDeleted }) => {
   const currentUser = useSelector((state) => state.session.user)
   const [timeStart, setTimeStart] = useState(schedule.time_start)
   const [timeEnd, setTimeEnd] = useState(schedule.time_end)
-  const [status, setStatus] = useState("accepted")
+  const [status, setStatus] = useState("pending")
 
   const [errors, setErrors] = useState({
     date: "",
     timeStart: "",
     timeEnd: ""
   })
+
 
 
   const isFormValid = date && timeStart && timeEnd;

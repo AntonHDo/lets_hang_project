@@ -92,6 +92,8 @@
   padding: 15px;
   border: var(--gray) solid;
   margin: 10px 0;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .mySchedulings {
@@ -157,6 +159,11 @@
 .friendNameAndSchedule .friendsDetails {
   color: var(--blue);
   font-size: 16px;
+  margin-top: 5px;
+}
+
+.friendsDetails:first-child {
+  padding-top: 5px;
 }
 
 .deleteAndEditProfileButtons {
@@ -173,12 +180,14 @@
   display: flex;
   justify-content: center;
   transition: transform 0.5s ease-out, background-color 0.5s ease-out, color 0.5s ease-out;
+
 }
 
 .editProfileButton button {
   color: white;
   padding: 5px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .editProfileButton:hover {
