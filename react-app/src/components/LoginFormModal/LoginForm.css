@@ -4,7 +4,7 @@
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+
   padding: 5px 0;
   margin: 15px 0 0 0;
   width: 100%;
@@ -19,7 +19,7 @@
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+
   padding: 5px 0;
   margin: 15px 0 0 0;
   width: 100%;
@@ -28,11 +28,13 @@
 }
 
 .loginMarnieContainer a {
-  color: white
+  color: white;
+  cursor: pointer;
 }
 
 .loginDemoUserContainer a {
   color: white;
+  cursor: pointer;
 }
 
 

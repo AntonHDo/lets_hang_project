@@ -21,8 +21,12 @@
   pointer-events: none;
 }
 
+.disabled {
+  cursor: normal;
+}
+
 .profile-dropdown li {
-  cursor: pointer;
+
   transition: background 0.2s ease-out, color 0.2s ease-out;
   margin: 10px 0;
   white-space: nowrap;
