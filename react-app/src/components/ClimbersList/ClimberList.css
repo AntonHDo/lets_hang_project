@@ -16,6 +16,8 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
+
 .climbersListImageContainer img {
   position: absolute;
   top: 0;
@@ -42,39 +44,83 @@
 }
 
 .climbersListProfileContainer h2 {
-  margin-left: 10px
+  margin-left: 10px;
+  color: var(--darkblue);
 }
 
 .climbersListProfileContainer {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   flex-direction: column;
   margin-bottom: 50px;
   margin-top: 10px;
   padding: 15px;
+  align-items: center;
 }
 
 .climbersListProfilePictureContainer {
   display: flex;
   border-radius: 2px;
-  gap: 100px;
+  justify-content: space-between;
+  max-width: 100%;
   align-items: center;
   width: 100%;
   margin-right: 20px;
+  cursor: pointer;
+  background-color: var(--footer-bg-color);
+  padding: 10px;
+  flex-wrap: wrap;
+  border: white solid;
+}
+
+.usersListProfilePictureContainer {
+  display: flex;
+  border-radius: 2px;
+  justify-content: space-between;
+  max-width: 100%;
+  align-items: center;
+  width: 100%;
+  margin-right: 20px;
+  cursor: pointer;
+  background-color: var(--footer-bg-color);
+  padding: 10px;
+  flex-wrap: wrap;
+  border: white solid;
+}
+
+.usersListProfilePictureContainer:hover::before {
+  content: "You cannot schedule a hangout with yourself";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  background-color: #ccc;
+  border-radius: 5px;
+
 }
 
 .membersDetailsContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   margin: 10px 0px;
   background-color: var(--blue);
   border: var(--gray) solid 8px;
-  flex: 1
+  flex: 1;
+  width: 98%;
+}
+
+.membersDetailsContainer button {
+  width: 25%;
+
 }
 
 .climbersListNameAndAboutMeContaineer {
   font-size: 20px;
   color: white;
+  margin-left: 10px;
+  padding: 10px;
 }

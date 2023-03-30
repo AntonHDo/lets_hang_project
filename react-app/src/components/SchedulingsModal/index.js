@@ -196,7 +196,7 @@ const SchedulingsModal = ({ user }) => {
             <button type="button" onClick={handleCancel}>Cancel</button>
           </form>
         )}
-        <button>Add Friend</button>
+        <button onClick={() => window.alert("Feature not yet implimented")}>Add Friend</button>
       </div>
     </div>
   )

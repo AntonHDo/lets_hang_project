@@ -25,10 +25,10 @@ function LoginFormModal() {
   const validateForm = () => {
     let errors = [];
     if (!isValidEmail(email)) {
-      errors.push('Invalid email.');
+      errors.push('Invalid Credentials.');
     }
     if (password.length < 6) {
-      errors.push('Password is too short');
+      errors.push('Invalid Credentials.');
     }
     return errors;
   }

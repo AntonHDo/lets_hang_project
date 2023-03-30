@@ -56,29 +56,24 @@ const ClimbersList = () => {
             </div>) : (
 
             <div className="membersDetailsContainer">
-              <div key={user.id}
-                className="climbersListProfilePictureContainer">
-                <div className="otherUsersimageContainer">
-                  <img src={user.profile_picture} />
-                </div>
-                <div className="climbersListNameAndAboutMeContaineer">
-                  <div>
-                    {user.first_name} {user.last_name}
+              <button onClick={() => window.alert("You cannot schedule a hangout with yourself")} className="userProfileOnMembers">
 
+                <div key={user.id} title="You cannot schedule a hangout with yourself!"
+                  className="usersListProfilePictureContainer">
+                  <div className="otherUsersimageContainer">
+                    <img src={user.profile_picture} />
                   </div>
-                  <div>{user.about_me}</div>
+                  <div className="climbersListNameAndAboutMeContaineer">
+                    <div>
+                      {user.first_name} {user.last_name}
+
+                    </div>
+                    <div>{user.about_me}</div>
+                  </div>
                 </div>
-              </div>
+              </button>
             </div>
           )
-          // <div className="climbersListProfilePictureContainer" >
-          //     <img src={user.profile_picture} />
-          //     <div className="climbersListNameAndAboutMeContaineer">
-          //       <div>{user.first_name} {user.last_name}</div>
-          //       <div>{user.about_me}</div>
-          //     </div>
-          //   </div>
-
         ))}
       </div>
     </div>

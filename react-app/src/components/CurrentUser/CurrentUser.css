@@ -12,6 +12,7 @@
   border-radius: 50%;
   position: relative;
   border: white solid 3px;
+  flex-shrink: 0;
 }
 
 .currentUsersFullNameText {
@@ -130,7 +131,9 @@
   overflow: hidden;
   border-radius: 50%;
   position: relative;
-  border: var(--blue) solid 3px;
+  border: var(--gray) solid 3px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
 }
 
 .otherUsersimageContainer img {
@@ -141,7 +144,6 @@
   height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
-
 }
 
 .friendNameAndSchedule {
