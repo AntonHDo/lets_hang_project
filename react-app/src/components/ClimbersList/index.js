@@ -41,22 +41,33 @@ const ClimbersList = () => {
         <h2>Members</h2>
         {locationUser.map(user => (
           user.id !== currentUser.id ? (
+            <div className="membersDetailsContainer">
 
-            <OpenModalButton key={user.id} buttonText={<div className="climbersListProfilePictureContainer" >
-              <img src={user.profile_picture} />
-              <div className="climbersListNameAndAboutMeContaineer">
-                <div>{user.first_name} {user.last_name}</div>
-                <div>{user.about_me}</div>
-              </div>
-            </div>}
-              modalComponent={<SchedulingsModal user={user} />} />) : (
-            <div key={user.id} className="climbersListProfilePictureContainer">
-              <img src={user.profile_picture} />
-              <div className="climbersListNameAndAboutMeContaineer">
-                <div>
-                  {user.first_name} {user.last_name}
+              <OpenModalButton key={user.id} buttonText={<div className="climbersListProfilePictureContainer" >
+                <div className="otherUsersimageContainer">
+                  <img src={user.profile_picture} />
                 </div>
-                <div>{user.about_me}</div>
+                <div className="climbersListNameAndAboutMeContaineer">
+                  <div>{user.first_name} {user.last_name}</div>
+                  <div>{user.about_me}</div>
+                </div>
+              </div>}
+                modalComponent={<SchedulingsModal user={user} />} />
+            </div>) : (
+
+            <div className="membersDetailsContainer">
+              <div key={user.id}
+                className="climbersListProfilePictureContainer">
+                <div className="otherUsersimageContainer">
+                  <img src={user.profile_picture} />
+                </div>
+                <div className="climbersListNameAndAboutMeContaineer">
+                  <div>
+                    {user.first_name} {user.last_name}
+
+                  </div>
+                  <div>{user.about_me}</div>
+                </div>
               </div>
             </div>
           )

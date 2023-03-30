@@ -41,9 +41,12 @@
   font-size: 50px;
 }
 
+.climbersListProfileContainer h2 {
+  margin-left: 10px
+}
+
 .climbersListProfileContainer {
   display: flex;
-
   justify-content: center;
   flex-direction: column;
   margin-bottom: 50px;
@@ -53,15 +56,25 @@
 
 .climbersListProfilePictureContainer {
   display: flex;
-  align-items: center;
-  padding: 50px 100px;
   border-radius: 2px;
-  background-color: var(--blue);
   gap: 100px;
-  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.membersDetailsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0px;
+  background-color: var(--blue);
+  border: var(--gray) solid 8px;
+  flex: 1
 }
 
 .climbersListNameAndAboutMeContaineer {
-  padding: 10px;
   font-size: 20px;
+  color: white;
 }

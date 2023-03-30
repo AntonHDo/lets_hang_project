@@ -46,7 +46,7 @@ const CurrentUser = () => {
       <div className="profileContainer">
         <div className="profileNameAndPicContainer">
           <div className="profileAndEdit">
-            <div>My Profile</div>
+            <div className="profileText">My Profile</div>
             <div className="deleteAndEditProfileButtons">
               <div className="userAccountDeleteButton"> <OpenModalButton
                 buttonText="Delete Account"
@@ -61,25 +61,43 @@ const CurrentUser = () => {
             </div>
           </div>
           <div className="profileImageAndFirstNameAndFriends">
-            <img src={currentUser?.profile_picture} alt="something" />
-            <div>{currentUser?.first_name} {currentUser?.last_name}</div>
+            <div className="profileImageContainer">
+              <img src={currentUser?.profile_picture} alt="something" />
+            </div>
+            <div className="currentUsersFullNameText">{currentUser?.first_name} {currentUser?.last_name}</div>
           </div>
         </div>
       </div>
-      <div className="profileBiosContainer">
-        <div className="currentUsersBio">Bio: {currentUser.about_me}</div>
+      <div className="currentUsersDetailsContainer">
+        <div className="currentUsersAboutMeContainer">
+          <div className="currentUsersBioText">Bio:</div>
+          <div className="borderForAboutMe">
+
+            <div className="currentUsersDetails">
+              {currentUser.about_me}
+            </div>
+          </div>
+
+        </div>
+        <div className="profileBiosContainer">
+
+        </div>
         <div className="otherUsersScheduleContainer">
-          My Schedulings
+          <div className="mySchedulings">
+            My Schedulings
+          </div>
           {scheduleArr.map(schedule => (
             <div className="otherUserProfilePictureAndDetails" key={schedule.id}>
-              <img src={schedule.friend.profile_picture
-              } />
+              <div className="otherUsersimageContainer">
+                <img src={schedule.friend.profile_picture
+                } />
+              </div>
               <div className="friendNameAndSchedule">
-                <div>{schedule.friend.first_name} {schedule.friend.last_name}</div>
-                <div>
+                <div className="friendsDetails">{schedule.friend.first_name} {schedule.friend.last_name}</div>
+                <div className="friendsDetails">
                   {createDateWithUTC(schedule.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}, {new Date(`January 1, 1970 ${schedule.time_start}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })} to {new Date(`January 1, 1970 ${schedule.time_end}:00`).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })}
                 </div>
-                <div>
+                <div className="friendsDetails">
                   Status: {schedule.status.charAt(0).toUpperCase() + schedule.status.slice(1).toLowerCase()}
                   <div className="schedulingDeleteAndEditButtonContainer">
                     <div className="schedulingDeleteButton"> <OpenModalButton

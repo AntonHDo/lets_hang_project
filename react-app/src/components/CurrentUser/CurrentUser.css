@@ -1,16 +1,48 @@
 .profileImageAndFirstNameAndFriends {
-  display: flex
+  display: flex;
+  align-items: center;
 }
 
 
+
+.profileImageContainer {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  border: white solid 3px;
+}
+
+.currentUsersFullNameText {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.profileImageContainer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  border: white solid 1px;
+}
 
 .profileAndEdit {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border: var(--blue) solid 5px;
+
+
   margin: 5px;
+}
+
+.profileText {
+  font-size: 2.5rem;
+  color: white;
 }
 
 .profileBiosContainer {
@@ -21,21 +53,95 @@
 
 }
 
+.currentUsersAboutMeContainer {
+  padding: 10px;
+  width: 50%;
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: var(--blue);
+  border: var(--gray) solid;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 5px;
+  /* margin-left: 10px; */
+}
+
+.currentUsersBioText {
+  margin-left: 10px
+}
+
+.currentUsersDetails {
+  font-size: 1.2rem;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.borderForAboutMe {
+
+  border: var(--gray) solid;
+}
+
+.currentUsersDetailsContainer {
+  display: flex;
+  text-align: left;
+}
+
+.otherUserProfilePictureAndDetails {
+  display: flex;
+  padding: 15px;
+  border: var(--gray) solid;
+  margin: 10px 0;
+}
+
+.mySchedulings {
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: var(--blue);
+  font-weight: bold
+}
+
 .otherUsersScheduleContainer {
   width: 50%;
   text-align: left;
+  border: var(--gray) solid;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.otherUsersInfoAndButtons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .currentUsersBio {
   width: 50%;
   text-align: left;
-
+  color: var(--blue);
+  margin-left: 10px;
 }
 
-.otherUserProfilePictureAndDetails {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+
+
+.otherUsersimageContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  border: var(--blue) solid 3px;
+}
+
+.otherUsersimageContainer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+
 }
 
 .friendNameAndSchedule {
@@ -43,6 +149,12 @@
   flex-direction: column;
   margin-left: 20px;
 
+
+}
+
+.friendNameAndSchedule .friendsDetails {
+  color: var(--blue);
+  font-size: 16px;
 }
 
 .deleteAndEditProfileButtons {
@@ -52,28 +164,51 @@
 }
 
 .editProfileButton {
-  border: var(--gray) solid 3px;
-  background-color: var(--blue);
+  border: white ridge 5px;
+  background-color: var(--footer-bg-color);
   margin-top: 5px;
   border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.5s ease-out, background-color 0.5s ease-out, color 0.5s ease-out;
 }
 
 .editProfileButton button {
   color: white;
   padding: 5px;
+  font-size: 16px;
+}
+
+.editProfileButton:hover {
+  transform: scale(1.05);
+  background-color: var(--darkblue);
+  color: white;
 }
 
 .userAccountDeleteButton {
-  border: var(--gray) solid 3px;
-  background-color: var(--blue);
+  border: white ridge 5px;
+  background-color: var(--footer-bg-color);
   border-radius: 4px;
   margin-bottom: 5px;
+  padding: 0 10px;
+  transition: transform 0.5s ease-out, background-color 0.5s ease-out, color 0.5s ease-out;
+
+}
+
+.userAccountDeleteButton:hover {
+  transform: scale(1.05);
+  background-color: red;
+  color: white;
 }
 
 .userAccountDeleteButton button {
   color: white;
   padding: 5px;
+  font-size: 16px;
+  transition: transform 0.5s ease-out, background-color 0.5s ease-out, color 0.5s ease-out;
+  cursor: pointer;
 }
+
 
 .schedulingDeleteAndEditButtonContainer {
   display: flex;
@@ -91,12 +226,35 @@
   z-index: 1;
 }
 
+.profileNameAndPicContainer {
+  padding: 50px;
+  /* border: var(--blue) solid 10px; */
+  border: 2rem ridge rgba(255, 255, 255, 1);
+  margin: 5px;
+  background-color: var(--blue);
+}
+
 
 #modal-content .editSchedulingForm {
   align-items: normal;
 }
 
 
-/* .editSchedulingForm label {
-  padding-top: 10px;
-} */
+.schedulingEditButton button {
+  color: var(--darkblue);
+  transition: transform 0.5s ease-out;
+}
+
+.schedulingEditButton button:hover {
+  transform: scale(1.05);
+}
+
+.schedulingDeleteButton button {
+  color: var(--darkblue);
+  transition: transform 0.5s ease-out, color 0.5s ease-out;
+}
+
+.schedulingDeleteButton button:hover {
+  transform: scale(1.05);
+  color: red;
+}
