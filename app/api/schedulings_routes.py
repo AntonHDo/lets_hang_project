@@ -59,6 +59,8 @@ def create_new_scheduling():
 def delete_a_scheduling(id):
     scheduling = Scheduling.query.get(id)
     if scheduling:
+        if current_user.id != scheduling.user_id and current_user.id != scheduling.friend_id:
+            return {"Response": f"User is not authorized to delete scheduling."}, 403
         db.session.delete(scheduling)
         db.session.commit()
         return {"Response": f"Successfully deleted scheduling."}
