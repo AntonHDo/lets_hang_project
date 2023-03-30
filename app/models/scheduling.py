@@ -30,6 +30,8 @@ class Scheduling(db.Model):
         super().__init__(**kwargs)
 
     def to_dict(self):
+        user_dict = self.user.to_dict() if self.user else None
+        friend_dict = self.friend.to_dict() if self.friend else None
         return{
             "id": self.id,
             "date": self.date.strftime('%Y-%m-%d'),
@@ -39,6 +41,6 @@ class Scheduling(db.Model):
             "user_id": self.user_id,
             "friend_id": self.friend_id,
             "location_id": self.location_id,
-            "user": self.user.to_dict(),
-            "friend": self.friend.to_dict()
+            "user": user_dict,
+            "friend": friend_dict
         }
