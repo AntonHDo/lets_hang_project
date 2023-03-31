@@ -41,7 +41,7 @@
   align-items: center;
   flex-direction: column;
   /* border: var(--gray) solid 10px; */
-  border: 2rem ridge rgba(255, 255, 255, 1);
+  border: 2rem solid rgba(91, 103, 112, .5);
   padding: 50px;
   background-color: var(--blue);
 }
