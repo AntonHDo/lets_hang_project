@@ -26,7 +26,7 @@ def upgrade():
                type_=sa.String(),
                nullable=False)
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE schedulings SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
