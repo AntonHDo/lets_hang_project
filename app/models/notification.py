@@ -16,7 +16,8 @@ class Notification(db.Model):
     #relationships
     user = db.relationship("User", foreign_keys=[user_id])
     other_user = db.relationship("User", foreign_keys=[other_user_id])
-    scheduling = db.relationship("Scheduling", foreign_keys=[scheduling_id])
+    scheduling = db.relationship("Scheduling", back_populates="notifications", foreign_keys=[scheduling_id])
+
 
     def to_dict(self):
         scheduling_dict = self.scheduling.to_dict() if self.scheduling else None

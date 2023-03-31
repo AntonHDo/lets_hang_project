@@ -21,6 +21,16 @@ class Scheduling(db.Model):
     user = db.relationship("User", foreign_keys=[user_id])
     friend = db.relationship("User", foreign_keys=[friend_id])
     location = db.relationship("Location", back_populates="schedulings")
+    notifications = db.relationship("Notification", back_populates="scheduling", cascade="all, delete-orphan")
+
+    def delete_scheduling(self):
+    # Delete related notifications
+        for notification in self.notifications:
+            db.session.delete(notification)
+
+    # Delete the scheduling itself
+        db.session.delete(self)
+        db.session.commit()
 
     def __init__(self, user_id, friend_id, **kwargs):
         if user_id == friend_id:

@@ -22,8 +22,8 @@ const CurrentUser = () => {
 
 
 
-  useEffect(async () => {
-    await dispatch(fetchCurrentUserSchedulings(currentUser?.id))
+  useEffect(() => {
+    dispatch(fetchCurrentUserSchedulings(currentUser?.id))
   }, [dispatch, currentUser?.id, currentUser, refresh])
 
   if (!currentUser) {

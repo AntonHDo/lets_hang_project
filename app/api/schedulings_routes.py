@@ -57,11 +57,13 @@ def create_new_scheduling():
 
 @schedulings_routes.route("/<int:id>", methods=["DELETE"])
 def delete_a_scheduling(id):
-    scheduling = Scheduling.query.get(id)
-    if scheduling:
-        db.session.delete(scheduling)
-        db.session.commit()
-        return {"Response": f"Successfully deleted scheduling."}
+    scheduling_to_delete = Scheduling.query.get(id)
+
+    if scheduling_to_delete:
+        scheduling_to_delete.delete_scheduling()
+        return {"message": "Scheduling and related notifications deleted successfully."}
+    else:
+        return {"error": "Scheduling not found."}, 404
 
 
 @schedulings_routes.route("/<int:id>", methods=["PUT"])
