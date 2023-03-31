@@ -36,6 +36,10 @@ const NotificationsModal = ({ notifications, locations }) => {
     closeModal()
   }
 
+  if (!notifications) {
+    return null
+  }
+
   return (
     <ul className="nofitications-container no-padding">
       {notificationsArr.map((notification) => {

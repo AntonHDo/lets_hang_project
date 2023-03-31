@@ -15,8 +15,8 @@ class Location(db.Model):
     preview_img = db.Column(db.String(255), nullable=False)
 
     # relationships
-    users = db.relationship("User", back_populates="location")
-    schedulings = db.relationship("Scheduling", back_populates="location")
+    users = db.relationship("User", back_populates="location", cascade="all, delete")
+    schedulings = db.relationship("Scheduling", back_populates="location", cascade="all, delete")
 
     def to_dict(self):
         return {

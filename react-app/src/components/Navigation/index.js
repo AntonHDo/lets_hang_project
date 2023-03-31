@@ -34,6 +34,9 @@ function Navigation({ isLoaded }) {
 		setUnreadNotificationsCount(count);
 	}, [notifications, sessionUser])
 
+	if (!notifications) {
+		return null
+	}
 
 	return (
 		<nav className='site-nav'>
