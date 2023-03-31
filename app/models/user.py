@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=True)
     profile_picture = db.Column(db.String)
     date_of_birth = db.Column(db.String, nullable=False)
     gender = db.Column(db.String, nullable=False)
@@ -39,6 +39,8 @@ class User(db.Model, UserMixin):
         for notification in notifications:
             db.session.delete(notification)
 
+        self.location_id = None
+        db.session.commit()
         # Delete the user itself
         db.session.delete(self)
         db.session.commit()
