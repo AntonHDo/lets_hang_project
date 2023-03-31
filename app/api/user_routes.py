@@ -61,8 +61,7 @@ def delete_user(id):
     user = User.query.get(id)
 
     if user:
-        db.session.delete(user)
-        db.session.commit()
+        user.delete_user()  # Call the delete_user method from the User class
         return {'message': f'Successfully deleted user with id {id}'}
     else:
         return {'error': f'User with id {id} not found'}, 404
