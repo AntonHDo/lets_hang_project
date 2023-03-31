@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from flask import current_app
+from app.models import Scheduling, Notification
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -26,15 +26,15 @@ class User(db.Model, UserMixin):
 
     def delete_user(self):
         # Delete related schedulings
-        schedulings = current_app.models.Scheduling.query.filter(
-            (current_app.models.Scheduling.user_id == self.id) | (current_app.models.Scheduling.friend_id == self.id)
+        schedulings = db.session.query(Scheduling).filter(
+            (Scheduling.user_id == self.id) | (Scheduling.friend_id == self.id)
         ).all()
         for scheduling in schedulings:
             scheduling.delete_scheduling()
 
         # Delete related notifications
-        notifications = current_app.models.Notification.query.filter(
-            (current_app.models.Notification.user_id == self.id) | (current_app.models.Notification.other_user_id == self.id)
+        notifications = db.session.query(Notification).filter(
+            (Notification.user_id == self.id) | (Notification.other_user_id == self.id)
         ).all()
         for notification in notifications:
             db.session.delete(notification)
