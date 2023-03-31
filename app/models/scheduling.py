@@ -18,8 +18,8 @@ class Scheduling(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("locations.id")), nullable=False)
 
     #relationships
-    user = db.relationship("User", foreign_keys=[user_id], cascade="all, delete-orphan")
-    friend = db.relationship("User", foreign_keys=[friend_id], cascade="all, delete-orphan")
+    user = db.relationship("User", foreign_keys=[user_id])
+    friend = db.relationship("User", foreign_keys=[friend_id])
     location = db.relationship("Location", back_populates="schedulings")
     notifications = db.relationship("Notification", back_populates="scheduling", cascade="all, delete-orphan")
 
