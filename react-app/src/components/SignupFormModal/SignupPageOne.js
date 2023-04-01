@@ -49,7 +49,7 @@ function SignupPageOne({
         <input type="text" name="username" autoComplete="username" style={{ display: "none" }} />
         <input type="password" name="password" autoComplete="current-password" style={{ display: "none" }} />
 
-        <ul>
+        <ul className="error-list">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}

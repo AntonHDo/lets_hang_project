@@ -143,6 +143,17 @@ h6 {}
   object-fit: cover;
 }
 
+
+.error-list {
+  color: rgb(221, 7, 7);
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 @media screen and (max-width:768px) {
 
   .about-us,

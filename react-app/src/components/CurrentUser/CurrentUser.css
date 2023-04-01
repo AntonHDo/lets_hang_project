@@ -173,7 +173,7 @@
 }
 
 .editProfileButton {
-  border: white ridge 5px;
+  border: white solid 2px;
   background-color: var(--footer-bg-color);
   margin-top: 5px;
   border-radius: 4px;
@@ -197,7 +197,7 @@
 }
 
 .userAccountDeleteButton {
-  border: white ridge 5px;
+  border: white solid 2px;
   background-color: var(--footer-bg-color);
   border-radius: 4px;
   margin-bottom: 5px;
@@ -240,7 +240,7 @@
 .profileNameAndPicContainer {
   padding: 50px;
   /* border: var(--blue) solid 10px; */
-  border: 2rem ridge rgba(255, 255, 255, 1);
+  border: 2rem solid rgba(255, 255, 255, 0.5);
   margin: 5px;
   background-color: var(--blue);
 }
