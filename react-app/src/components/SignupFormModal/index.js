@@ -51,6 +51,30 @@ function SignupFormModal() {
 			age--;
 		}
 
+		if (firstName.length > 255) {
+			errors.push("Theres no way thats your first name right? It's over 255 characters!")
+		}
+
+		if (lastName.length > 255) {
+			errors.push("Theres no way thats your last name right? It's over 255 characters!")
+		}
+
+		if (username.length > 40) {
+			errors.push("Username must be under 40 characters")
+		}
+
+		if (username.length < 4) {
+			errors.push("Username must be at least 4 characters")
+		}
+
+		if (bio.length > 2000) {
+			errors.push("bio cannot exceed 2000 characters")
+		}
+
+		if (email.length > 255) {
+			errors.push("Email cannot exceed 255 characters")
+		}
+
 		if (age < 18) {
 			errors.push("You must be at least 18 or older to register")
 		}
@@ -60,6 +84,10 @@ function SignupFormModal() {
 		}
 		if (password.length < 6) {
 			errors.push("Password must be at least 6 characters long");
+		}
+
+		if (password.length > 255) {
+			errors.push("Password cannot exceed 255 characters")
 		}
 
 		return errors

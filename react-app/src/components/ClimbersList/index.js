@@ -48,8 +48,10 @@ const ClimbersList = () => {
                   <img src={user.profile_picture} />
                 </div>
                 <div className="climbersListNameAndAboutMeContaineer">
-                  <div>{user.first_name} {user.last_name}</div>
-                  <div>{user.about_me}</div>
+                  <div className="climbersFirstNameAndLastName">
+                    {user.first_name} {user.last_name}
+                  </div>
+                  <div >{user.about_me}</div>
                 </div>
               </div>}
                 modalComponent={<SchedulingsModal user={user} />} />
@@ -64,11 +66,11 @@ const ClimbersList = () => {
                     <img src={user.profile_picture} />
                   </div>
                   <div className="climbersListNameAndAboutMeContaineer">
-                    <div>
+                    <div className="climbersFirstNameAndLastName">
                       {user.first_name} {user.last_name}
 
                     </div>
-                    <div>{user.about_me}</div>
+                    <div className="climbersFirstNameAndLastName">{user.about_me}</div>
                   </div>
                 </div>
               </button>

@@ -98,6 +98,10 @@
 
 }
 
+.nav-bar-rightside-container button:disabled {
+  background: var(--darkblue) !important;
+}
+
 .navigationBellNumber {
   color: white;
   font-size: 15px;
@@ -115,6 +119,7 @@
   color: white;
   font-size: 22px;
   padding-left: 20px;
+
 }
 
 .site-nav .nav-list {
@@ -141,7 +146,8 @@
 
 .nav-bar-rightside-container {
   display: flex;
-  padding-right: 30px
+  padding-right: 30px;
+
 }
 
 .nav-bar-bell-and-num {

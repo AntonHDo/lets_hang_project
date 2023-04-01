@@ -29,6 +29,15 @@ function SignupPageTwo({
   const [disableSubmit, setDisableSubmit] = useState(true);
   const { closeModal } = useModal();
 
+  const checkImageExists = (url) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => reject(false);
+      img.src = url;
+    });
+  };
+
   useEffect(() => {
     dispatch(fetchLocations())
   }, [dispatch])
@@ -38,6 +47,11 @@ function SignupPageTwo({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm()
+    try {
+      await checkImageExists(profilePicture);
+    } catch (error) {
+      errors.push("The provided image URL is invalid or cannot be loaded.");
+    }
     if (errors.length === 0) {
       const defaultImageUrl = "https://i.imgur.com/cXPKYuE.png";
       const finalProfilePicture = profilePicture || defaultImageUrl;

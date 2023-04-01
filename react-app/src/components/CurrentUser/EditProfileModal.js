@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./CurrentUser.css";
 import { editUserInfo } from "../../store/session";
-import { fetchLocations } from "../../store/locations";
 
 const EditProfileModal = ({ currentUser, setRefresh }) => {
   const dispatch = useDispatch()
@@ -20,6 +19,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
   const [disable, setDisable] = useState(true);
   const [errors, setErrors] = useState([]);
 
+
   useEffect(() => {
     if (
       firstName !== "" &&
@@ -35,27 +35,62 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
     }
   }, [firstName, lastName, dateOfBirth, location, gender, bio, profilePicture]);
 
+  const validateForm = () => {
+    const errors = []
+    if (firstName.length > 255) {
+      errors.push("Theres no way thats your first name right? It's over 255 characters!")
+    }
+
+    if (lastName.length > 255) {
+      errors.push("Theres no way thats your last name right? It's over 255 characters!")
+    }
+
+    if (bio.length > 2000) {
+      errors.push("bio cannot exceed 2000 characters")
+    }
+
+    return errors
+  };
+
+
+  const checkImageExists = (url) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => reject(false);
+      img.src = url;
+    });
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedInfo = {
-      ...currentUser,
-      first_name: firstName,
-      last_name: lastName,
-      location_id: location,
-      gender,
-      about_me: bio,
-      profile_picture: profilePicture
+
+    const errors = validateForm()
+    try {
+      await checkImageExists(profilePicture);
+    } catch (error) {
+      errors.push("The provided image URL is invalid or cannot be loaded.");
     }
+    if (errors.length === 0) {
+      const defaultImageUrl = "https://i.imgur.com/cXPKYuE.png";
+      const finalProfilePicture = profilePicture || defaultImageUrl;
+      const updatedInfo = {
+        ...currentUser,
+        first_name: firstName,
+        last_name: lastName,
+        location_id: location,
+        gender,
+        about_me: bio,
+        profile_picture: finalProfilePicture
+      }
+      await dispatch(editUserInfo(currentUser.id, updatedInfo));
 
-
-
-    // username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, profilePicture
-    await dispatch(editUserInfo(currentUser.id, updatedInfo));
-
-    closeModal();
-
+      closeModal();
+    } else {
+      setErrors(errors)
+    }
   };
 
   const locationsArr = Object.values(locations)
@@ -64,7 +99,7 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
     <>
       <h2>Update Profile</h2>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className="error-list">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -87,55 +122,6 @@ const EditProfileModal = ({ currentUser, setRefresh }) => {
             required
           />
         </label>
-
-        {/* <label>
-          Date Of Birth
-          <input
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            required
-            placeholder="mm-dd-yyyy"
-          />
-        </label> */}
-
-        {/* <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label> */}
-        {/* <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label> */}
-
-        {/* <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label> */}
         <label>
           Location
           <select

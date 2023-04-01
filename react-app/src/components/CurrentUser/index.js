@@ -72,7 +72,6 @@ const CurrentUser = () => {
         <div className="currentUsersAboutMeContainer">
           <div className="currentUsersBioText">Bio:</div>
           <div className="borderForAboutMe">
-
             <div className="currentUsersDetails">
               {currentUser.about_me}
             </div>

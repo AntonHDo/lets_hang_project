@@ -17,7 +17,14 @@ const Locations = () => {
   const userLoggedIn = () => {
     if (user) {
       return user && (
-        <div>hi</div>
+        <div className="loggedOutHomeBannerContainer">
+          <h2>Welcome to Lets Hang!</h2>
+          <h2>Start sending with new people! Select a location below!</h2>
+
+
+
+
+        </div>
       )
     } else {
       return (
@@ -60,8 +67,8 @@ const Locations = () => {
     <div className="homePageContainer">
       {userLoggedIn()}
 
-      <div className="homeLocationsContainer">
-        {user ? <div>Start sending with new people! Select a location below!</div> : <></>}
+      <div className="homeLocationsContainer white-space">
+        {/* {user ? <div className="loggedInTextTitle">Start sending with new people! Select a location below!</div> : <></>} */}
         {locationsArr?.map((location) => (
           <NavLink
             onClick={!user ? () => window.alert("Must sign up to start sending with someone!") : () => <></>}

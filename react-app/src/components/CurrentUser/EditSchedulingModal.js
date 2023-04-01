@@ -118,7 +118,7 @@ const EditSchedulingModal = ({ schedule, onDeleted }) => {
         {Object.values(errors).map((value, index) => {
           if (value) {
             return (
-              <div key={index} className="error-message">
+              <div key={index} className="error-list">
                 {value}
               </div>
             );
