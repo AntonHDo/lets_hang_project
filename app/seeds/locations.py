@@ -28,7 +28,7 @@ def seed_locations():
         city="Oslo",
         state="N/A",
         country="Norway",
-        preview_img="https://i.imgur.com/E3uLKpM.jpeg"
+        preview_img="https://live.staticflickr.com/816/39037003290_8f24f55cd6_k.jpg"
     )
     location5 = Location(
         location_name="Big Rock",

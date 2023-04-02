@@ -113,3 +113,8 @@
   text-align: center;
   background-color: var(--blue);
 }
+
+
+.text-container p {
+  font-size: 24px;
+}
