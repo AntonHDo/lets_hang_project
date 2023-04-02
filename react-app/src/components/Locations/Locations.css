@@ -6,21 +6,14 @@
   margin-top: 50px;
 }
 
-.navLinkHomePage {
-  display: block;
-  position: relative;
-  aspect-ratio: 16/9;
-  width: 100%;
-  max-width: 90%;
-  margin: 1% 0%;
-}
 
 /* .navLinkHomePage:first-child {
   margin-top: 70px;
 } */
+
 .loggedOutButtons {
   padding-bottom: 15px;
-  padding-top: 10px;
+  padding-top: 20px;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -31,7 +24,7 @@
 
 .loggedOutButtons button {
   color: white;
-
+  padding: 15px !important;
 }
 
 .loggedOutHomeBannerContainer {
@@ -41,9 +34,9 @@
   align-items: center;
   flex-direction: column;
   /* border: var(--gray) solid 10px; */
-  border: 2rem solid var(--darkblue);
-  padding: 50px;
-  background-color: var(--blue);
+  border: 2rem solid rgba(0, 32, 93, .8);
+  padding: 100px;
+  background-color: rgba(0, 32, 93, .5);
 }
 
 .loggedOutHomeBannerContainer h2 {
@@ -54,6 +47,7 @@
   color: white;
 }
 
+
 .navLinkHomePage img {
   position: absolute;
   top: 0;
@@ -61,7 +55,28 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: var(--darkblue) solid 2px;
+  /* border: var(--darkblue) solid 2px; */
+}
+
+.navLinkHomePage {
+  display: block;
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 90%;
+  margin: 1% 0%;
+}
+
+.navLinkHomePage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.3) 90%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .homePageLocationAndPeople {

@@ -45,7 +45,7 @@
 
 .climbersListProfileContainer h2 {
   margin-left: 10px;
-  color: var(--darkblue);
+  color: white
 }
 
 .climbersListProfileContainer {
@@ -57,7 +57,10 @@
   margin-top: 10px;
   padding: 15px;
   align-items: center;
+  padding-bottom: 30px;
 }
+
+
 
 .climbersListProfilePictureContainer {
   display: flex;
@@ -107,8 +110,8 @@
   align-items: center;
   padding: 10px;
   margin: 10px 0px;
-  background-color: var(--blue);
-  border: var(--gray) solid 8px;
+  /* background-color: rgba(0, 156, 166, 0.5); */
+  /* border: var(--gray) solid 8px; */
   flex: 1;
   width: 98%;
 }

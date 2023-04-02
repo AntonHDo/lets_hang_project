@@ -130,6 +130,9 @@
   flex-wrap: nowrap;
 }
 
+.homePageContainer {
+  padding-top: 1px;
+}
 
 .nav-home-button {
   color: white;

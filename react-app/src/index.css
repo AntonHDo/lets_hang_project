@@ -107,6 +107,20 @@ h5 {}
 h6 {}
 
 /* Move this to proper css file for landing content  */
+
+.app {
+  background-color: #2d2d2d;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+    url('./components/Banner/pexels-marek-piwnicki-5826875.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  /* height: 100%; */
+}
+
 .about-us,
 .our-mission {
   display: flex;

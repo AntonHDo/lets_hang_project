@@ -37,15 +37,41 @@ def seed_users():
          first_name='Bobbie',
          last_name='Johnson',
          profile_picture="https://i.imgur.com/8ZsfRqA.png",
-         location_id=2,
+         location_id=3,
          date_of_birth='1988-10-20',
          gender='Non-binary',
          about_me='I am Bobbie'
+        )
+    sean = User(
+         username='sean',
+         email='sean@gmail.com',
+         password='password',
+         first_name='Sean',
+         last_name='Deep',
+         profile_picture="https://i.imgur.com/YbYmKf1.png",
+         location_id=4,
+         date_of_birth='1994-04-25',
+         gender='Male',
+         about_me='I am Sean'
+        )
+    jim = User(
+         username='jim',
+         email='jim@gmail.com',
+         password='password',
+         first_name='Jim',
+         last_name='Halpert',
+         profile_picture="https://i.imgur.com/jdHdBE7.png",
+         location_id=5,
+         date_of_birth='1994-11-20',
+         gender='Non-binary',
+         about_me='I am Jim'
         )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(sean)
+    db.session.add(jim)
     db.session.commit()
 
 

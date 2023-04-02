@@ -16,10 +16,34 @@ def seed_locations():
         country="United State",
         preview_img="https://i.imgur.com/YMxk6Um.jpeg"
     )
+    location3 = Location(
+        location_name="Castle Rock",
+        city="Santa Cruz",
+        state="California",
+        country="United State",
+        preview_img="https://i.imgur.com/mUakiK2.jpeg"
+    )
+    location4 = Location(
+        location_name="Oslo Klatresenter",
+        city="Oslo",
+        state="N/A",
+        country="Norway",
+        preview_img="https://i.imgur.com/E3uLKpM.jpeg"
+    )
+    location5 = Location(
+        location_name="Big Rock",
+        city="Black Diabmond",
+        state="Alberta",
+        country="Canada",
+        preview_img="https://i.imgur.com/mDSKYQm.jpeg"
+    )
 
     db.session.add_all([
         location1,
         location2,
+        location3,
+        location4,
+        location5
     ])
 
     db.session.commit()
