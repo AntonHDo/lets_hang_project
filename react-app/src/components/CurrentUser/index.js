@@ -37,7 +37,7 @@ const CurrentUser = () => {
   }
 
   const scheduleArr = Object.values(currentSchedules)
-  console.log(currentUser)
+  // console.log(currentUser)
 
   if (!currentUser) {
     return null

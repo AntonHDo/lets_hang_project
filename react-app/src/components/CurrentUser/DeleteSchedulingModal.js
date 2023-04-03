@@ -6,7 +6,7 @@ import { removeScheduling } from "../../store/schedulings";
 const DeleteSchedulingModal = ({ scheduleId, onDeleted }) => {
   const dispatch = useDispatch()
   const { closeModal } = useModal()
-  console.log("schedule id", scheduleId)
+  // console.log("schedule id", scheduleId)
 
 
   const handleSubmit = async (e) => {

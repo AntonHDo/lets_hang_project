@@ -149,7 +149,7 @@ export const removeScheduling = (schedulingId) => async (dispatch) => {
   });
 
   if (response.ok) {
-    console.log("response from thunk", response)
+    // console.log("response from thunk", response)
     dispatch(deleteScheduling(schedulingId));
   }
 
@@ -187,7 +187,7 @@ const schedulingsReducer = (state = initialState, action) => {
       }
       return newState;
     case DELETE_SCHEDULING:
-      console.log("DELETE_SCHEDULING called");
+      // console.log("DELETE_SCHEDULING called");
       newState.currentUserScheduling = { ...state.currentUserScheduling }
       delete newState.currentUserScheduling[action.schedulingId]
       return newState
