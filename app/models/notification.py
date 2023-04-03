@@ -17,7 +17,12 @@ class Notification(db.Model):
     user = db.relationship("User", foreign_keys=[user_id])
     other_user = db.relationship("User", foreign_keys=[other_user_id])
     scheduling = db.relationship("Scheduling", back_populates="notifications", foreign_keys=[scheduling_id])
-
+    def decline(self):
+        if self.scheduling:
+            scheduling = self.scheduling
+            db.session.delete(self)  # delete the notification
+            scheduling.delete_scheduling()  # delete the associated scheduling and its related notifications
+            db.session.commit()
 
     def to_dict(self):
         scheduling_dict = self.scheduling.to_dict() if self.scheduling else None

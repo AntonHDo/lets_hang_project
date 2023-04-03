@@ -23,6 +23,8 @@ class Scheduling(db.Model):
     location = db.relationship("Location", back_populates="schedulings")
     notifications = db.relationship("Notification", back_populates="scheduling", cascade="all, delete-orphan")
 
+
+
     def delete_scheduling(self):
     # Delete related notifications
         for notification in self.notifications:
@@ -42,6 +44,7 @@ class Scheduling(db.Model):
     def to_dict(self):
         user_dict = self.user.to_dict() if self.user else None
         friend_dict = self.friend.to_dict() if self.friend else None
+
         return{
             "id": self.id,
             "date": self.date.strftime('%Y-%m-%d'),

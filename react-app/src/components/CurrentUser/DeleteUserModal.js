@@ -10,6 +10,12 @@ const DeleteUserModal = ({ currentUserId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (currentUserId === 1 || currentUserId === 2) {
+      alert("Demo accounts cannot be deleted.");
+      return;
+    }
+
     await dispatch(extinguishUser(currentUserId))
     closeModal()
   }

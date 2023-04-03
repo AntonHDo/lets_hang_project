@@ -29,13 +29,19 @@ function SignupPageTwo({
   const [disableSubmit, setDisableSubmit] = useState(true);
   const { closeModal } = useModal();
 
-  const checkImageExists = (url) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => reject(false);
-      img.src = url;
-    });
+  const checkImageExists = async (url) => {
+    if (!url) return true;
+    try {
+      await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = url;
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
   };
 
   useEffect(() => {

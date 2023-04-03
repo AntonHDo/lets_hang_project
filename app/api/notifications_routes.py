@@ -36,8 +36,12 @@ def create_new_notification():
 def delete_a_notification(id):
     notification = Notification.query.get(id)
     if notification:
-        db.session.delete(notification)
-        db.session.commit()
-        return {"Response": f"Successfully deleted notification."}
+        if notification.type == "scheduling_request":
+            notification.decline()
+            return {"Response": "Successfully declined the scheduling request and deleted the notification."}
+        else:
+            db.session.delete(notification)
+            db.session.commit()
+            return {"Response": "Successfully deleted the notification."}
     else:
         return {"Error": "Notification not found"}, 404

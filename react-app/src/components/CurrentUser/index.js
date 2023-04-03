@@ -13,6 +13,8 @@ const CurrentUser = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user)
   const currentSchedules = useSelector(state => state.schedulings.currentUserSchedulings)
+  const notifications = useSelector(state => state.notifications.notifications)
+  // console.log("sdsdsdsdsd", notifications)
   const [refresh, setRefresh] = useState(false)
 
   const createDateWithUTC = (dateString) => {
@@ -35,7 +37,7 @@ const CurrentUser = () => {
   }
 
   const scheduleArr = Object.values(currentSchedules)
-
+  console.log(currentUser)
 
   if (!currentUser) {
     return null
