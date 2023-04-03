@@ -19,9 +19,8 @@ class Notification(db.Model):
     scheduling = db.relationship("Scheduling", back_populates="notifications", foreign_keys=[scheduling_id])
     def decline(self):
         if self.scheduling:
-            scheduling = self.scheduling
+            self.scheduling.status = "declined"  # update the scheduling status to "declined"
             db.session.delete(self)  # delete the notification
-            scheduling.delete_scheduling()  # delete the associated scheduling and its related notifications
             db.session.commit()
 
     def to_dict(self):
