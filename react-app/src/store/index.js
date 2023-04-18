@@ -4,12 +4,14 @@ import session from './session'
 import locations from './locations'
 import schedulings from './schedulings'
 import notifications from './notifications'
+import friends from './friends'
 
 const rootReducer = combineReducers({
   session,
   locations,
   schedulings,
-  notifications
+  notifications,
+  friends
 
 });
 

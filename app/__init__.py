@@ -12,7 +12,7 @@ from .config import Config
 from .api.locations_routes import locations_routes
 from .api.schedulings_routes import schedulings_routes
 from .api.notifications_routes import notifications_routes
-
+from .api.friends_routes import friends_routes
 app = Flask(__name__, static_folder="../react-app/build", static_url_path="/")
 
 # Setup login manager
@@ -29,11 +29,12 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix="/api/users")
+app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 app.register_blueprint(locations_routes, url_prefix='/api/locations')
 app.register_blueprint(schedulings_routes, url_prefix='/api/schedulings')
 app.register_blueprint(notifications_routes, url_prefix='/api/notifications')
+app.register_blueprint(friends_routes, url_prefix='/api/friends')
 db.init_app(app)
 Migrate(app, db)
 

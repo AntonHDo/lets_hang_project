@@ -75,7 +75,9 @@ export const fetchSingleNotification = (notificationId) => async (dispatch) => {
 //   }
 // };
 export const makeNotification = (notification, scheduling) => async (dispatch) => {
-  notification.scheduling_id = scheduling.id;
+  if (scheduling) {
+    notification.scheduling_id = scheduling.id;
+  }
   const res = await fetch('/api/notifications', {
     method: 'POST',
     headers: {

@@ -6,6 +6,7 @@ import { makeScheduling } from "../../store/schedulings";
 import { makeNotification } from "../../store/notifications";
 import { fetchSchedulings } from "../../store/schedulings";
 import './SchedulingsModal.css'
+import FriendsButton from "../FriendsButton";
 
 const SchedulingsModal = ({ user }) => {
   const dispatch = useDispatch();
@@ -199,7 +200,9 @@ const SchedulingsModal = ({ user }) => {
             <button type="button" onClick={handleCancel}>Cancel</button>
           </form>
         )}
-        <button onClick={() => window.alert("Feature not yet implimented")}>Add Friend</button>
+
+        {/* <button onClick={() => window.alert("Feature not yet implimented")}>Add Friend</button> */}
+        <FriendsButton user={user} />
       </div>
     </div>
   )
