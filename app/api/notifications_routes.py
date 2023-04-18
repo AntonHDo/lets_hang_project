@@ -19,10 +19,11 @@ def get_single_notification(id):
 @notifications_routes.route("/", methods=["POST"])
 def create_new_notification():
     res = request.get_json()
+    scheduling_id = res.get("scheduling_id", None)
     notification = Notification(
         user_id=res["user_id"],
         other_user_id=res["other_user_id"],
-        scheduling_id=res["scheduling_id"],
+        scheduling_id=scheduling_id,
         type="scheduling_request",
         message=res["message"],
         read=False
