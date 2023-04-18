@@ -5,15 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeFriend } from "../../store/friends";
 import { makeNotification } from "../../store/notifications";
 
-const FriendsButton = ({ user }) => {
+const FriendsButton = ({ user, sentRequests, setSentRequests }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal()
   const currentUser = useSelector((state) => state.session.user)
+  const currentUserFriends = useSelector((state) => state.friends.currentUserFriends)
   const [status, setStatus] = useState("pending")
+  const [requestSent, setRequestSent] = useState(false)
 
+
+  const isFriendOrRequested = () => {
+    if (!currentUserFriends) return false;
+    const friendStatus = Object.values(currentUserFriends).find((friend) => friend.friend_id === user.id);
+
+    const requestSentInSession = sentRequests.includes(user.id)
+
+    return friendStatus || requestSentInSession;
+  }
 
   const handleFriendSubmit = async (e) => {
     e.preventDefault();
+    closeModal();
     const newFriend = {
       user_id: currentUser.id,
       friend_id: user.id,
@@ -22,6 +34,7 @@ const FriendsButton = ({ user }) => {
 
     const friend = await dispatch(makeFriend(newFriend))
     if (friend) {
+      setSentRequests([...sentRequests, user.id])
       const notification = {
         user_id: user.id,
         other_user_id: currentUser.id,
@@ -30,11 +43,11 @@ const FriendsButton = ({ user }) => {
       }
       await dispatch(makeNotification(notification))
     }
-    closeModal();
+
   }
 
   return (
-    <button onClick={handleFriendSubmit} type="submit">Add Friend</button>
+    <button onClick={handleFriendSubmit} type="submit" disabled={isFriendOrRequested() || requestSent}>Add Friend</button>
   )
 }
 

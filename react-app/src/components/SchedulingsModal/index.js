@@ -7,6 +7,7 @@ import { makeNotification } from "../../store/notifications";
 import { fetchSchedulings } from "../../store/schedulings";
 import './SchedulingsModal.css'
 import FriendsButton from "../FriendsButton";
+import { fetchCurrentUserFriends } from "../../store/friends";
 
 const SchedulingsModal = ({ user }) => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const SchedulingsModal = ({ user }) => {
   const [timeStart, setTimeStart] = useState("")
   const [timeEnd, setTimeEnd] = useState("")
   const [status, setStatus] = useState("pending")
+  const [sentRequests, setSentRequests] = useState([]);
 
   const [errors, setErrors] = useState({
     date: "",
@@ -29,8 +31,11 @@ const SchedulingsModal = ({ user }) => {
   const isFormValid = date && timeStart && timeEnd;
 
   useEffect(() => {
+    if (currentUser) {
+      dispatch(fetchCurrentUserFriends(currentUser.id));
+    }
     dispatch(fetchSchedulings())
-  }, [dispatch])
+  }, [dispatch, currentUser])
 
 
   const handleScheduleClick = () => {
@@ -202,7 +207,7 @@ const SchedulingsModal = ({ user }) => {
         )}
 
         {/* <button onClick={() => window.alert("Feature not yet implimented")}>Add Friend</button> */}
-        <FriendsButton user={user} />
+        <FriendsButton user={user} sentRequests={sentRequests} setSentRequests={setSentRequests} />
       </div>
     </div>
   )
