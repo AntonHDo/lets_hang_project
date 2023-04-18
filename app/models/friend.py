@@ -38,5 +38,6 @@ class Friend(db.Model):
             "user_id": self.user_id,
             "friend_id": self.friend_id,
             "user": user_dict,
-            "friend":friend_dict
+            "friend":friend_dict,
+            "status": self.status
         }

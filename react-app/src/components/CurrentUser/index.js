@@ -8,6 +8,7 @@ import EditSchedulingModal from "./EditSchedulingModal";
 import DeleteSchedulingModal from "./DeleteSchedulingModal";
 import EditProfileModal from "./EditProfileModal";
 import DeleteUserModal from "./DeleteUserModal";
+import { fetchCurrentUserFriends } from "../../store/friends";
 
 const CurrentUser = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const CurrentUser = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentUserSchedulings(currentUser?.id))
+    dispatch(fetchCurrentUserFriends(currentUser?.id))
   }, [dispatch, currentUser?.id, currentUser, refresh])
 
   if (!currentUser) {
