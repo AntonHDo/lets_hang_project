@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { removeNotification } from "../../store/notifications";
 import { fetchNotifications } from "../../store/notifications";
 import { updateScheduling } from "../../store/schedulings";
+import { updateFriendStatus } from "../../store/friends";
 import './NotificationsModal.css'
 
 const NotificationsModal = ({ notifications, locations }) => {
@@ -42,6 +43,7 @@ const NotificationsModal = ({ notifications, locations }) => {
 
   return (
     <ul className="nofitications-container no-padding">
+      <div className="notificationInModal">Notification(s)</div>
       {notificationsArr.map((notification) => {
 
         const locationId = notification.scheduling?.location_id;
@@ -50,21 +52,24 @@ const NotificationsModal = ({ notifications, locations }) => {
 
         return (
           <>
-            <div className="notificationInModal">Notification(s)</div>
             <li className="notifications-list" key={notification?.id}>
-              {notification?.other_user.username} wants to schedule a Hang out at {location?.location_name}, {new Date(notification?.scheduling?.date).toLocaleString("en-US", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              })} at {new Date(`1970-01-01T${notification.scheduling?.time_start}`).toLocaleString("en-US", {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              })} to {new Date(`1970-01-01T${notification.scheduling?.time_end}`).toLocaleString("en-US", {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              })}
+              {notification.type === "friend-request" ? (
+                `${notification?.other_user.username} sent you a friend request.`
+              ) : (
+                `${notification?.other_user.username} wants to schedule a Hang out at ${location?.location_name}, ${new Date(notification?.scheduling?.date).toLocaleString("en-US", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })} at ${new Date(`1970-01-01T${notification.scheduling?.time_start}`).toLocaleString("en-US", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })} to ${new Date(`1970-01-01T${notification.scheduling?.time_end}`).toLocaleString("en-US", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })}`
+              )}
               <button onClick={() => handleAccept(scheduling, notification.id)}>Accept</button>
               <button onClick={() => handleDecline(notification.id)}>Decline</button>
             </li>

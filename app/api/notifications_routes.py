@@ -24,7 +24,7 @@ def create_new_notification():
         user_id=res["user_id"],
         other_user_id=res["other_user_id"],
         scheduling_id=scheduling_id,
-        type="scheduling_request",
+        type=res["type"],
         message=res["message"],
         read=False
     )
