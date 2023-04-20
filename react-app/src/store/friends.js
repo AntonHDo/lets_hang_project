@@ -34,6 +34,7 @@ export const createFriend = (friend) => {
 export const updateFriendStatus = (friendId, status) => {
   return {
     type: UPDATE_FRIEND_STATUS,
+    friendId,
     status
   }
 }
@@ -46,7 +47,7 @@ export const deleteFriend = (friendId) => {
 }
 
 export const changeFriendStatus = (friendId, status) => async (dispatch) => {
-  const response = fetch(`/api/friends/${friendId}/status`, {
+  const response = await fetch(`/api/friends/${friendId}/status`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

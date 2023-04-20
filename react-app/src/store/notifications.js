@@ -6,6 +6,8 @@ export const CREATE_NOTIFICATION = "notification/create"
 
 export const DELETE_NOTIFICATION = "notification/delete"
 
+export const SET_NOTIFICATIONS_COUNT = "notifications/set_count";
+
 export const getNotifications = (notifications) => {
   return {
     type: GET_ALL_NOTIFICATIONS,
@@ -33,6 +35,14 @@ export const deleteNotification = (notificationId) => {
     notificationId
   }
 }
+
+
+export const setNotificationsCount = (count) => {
+  return {
+    type: SET_NOTIFICATIONS_COUNT,
+    count,
+  };
+};
 
 //thunk
 
@@ -119,6 +129,9 @@ const notificationsReducer = (state = initialState, action) => {
       return newState
     case DELETE_NOTIFICATION:
       delete newState.notifications[action.notificationId];
+      return newState;
+    case SET_NOTIFICATIONS_COUNT:
+      newState["count"] = action.count;
       return newState;
     default:
       return state

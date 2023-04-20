@@ -57,6 +57,7 @@ export const deleteScheduling = (schedulingId) => {
 export const updateSchedulingStatus = (schedulingId, status) => {
   return {
     type: UPDATE_SCHEDULING_STATUS,
+    schedulingId,
     status
   }
 }
@@ -131,7 +132,7 @@ export const updateScheduling = (scheduling) => async (dispatch) => {
 };
 
 export const changeSchedulingStatus = (schedulingId, status) => async (dispatch) => {
-  const response = fetch(`/api/schedulings/${schedulingId}/status`, {
+  const response = await fetch(`/api/schedulings/${schedulingId}/status`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -144,6 +145,7 @@ export const changeSchedulingStatus = (schedulingId, status) => async (dispatch)
 }
 
 export const removeScheduling = (schedulingId) => async (dispatch) => {
+  await dispatch(changeSchedulingStatus(schedulingId, 'declined'));
   const response = await fetch(`/api/schedulings/${schedulingId}`, {
     method: "DELETE",
   });

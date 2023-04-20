@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models.friend import db, Friend
+from app.models.user import User
+from flask_login import current_user
 
 friends_routes = Blueprint("friends", __name__)
 
@@ -35,12 +37,18 @@ def update_friend_status(id):
         db.session.commit()
         return friend.to_dict()
 
-@friends_routes.route("/<int:id>", methods=["DELETE"])
-def delete_a_friend(id):
-    friend_to_delete = Friend.query.get(id)
+@friends_routes.route('/<int:friend_id>', methods=['DELETE'])
+def delete_a_friend(friend_id):
+    current_user_id = current_user.id
 
-    if friend_to_delete:
-        friend_to_delete.delete_friend()
-        return {"message": "Friend Deleted"}
-    else:
-        return {"error": "Friend not found."}, 404
+    # Find the friend relationship you want to delete
+    friend_to_delete = Friend.query.filter(
+        ((Friend.user_id == current_user_id) & (Friend.friend_id == friend_id)) |
+        ((Friend.user_id == friend_id) & (Friend.friend_id == current_user_id))
+    ).first()
+
+    if not friend_to_delete:
+        return {"errors": ["Friendship not found."]}
+
+    friend_to_delete.delete_friend()
+    return {"message": "Friendship deleted."}

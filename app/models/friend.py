@@ -17,8 +17,6 @@ class Friend(db.Model):
     friend = db.relationship("User", foreign_keys=[friend_id])
 
     def delete_friend(self):
-        for friend in self.friend:
-            db.session.delete(friend)
         db.session.delete(self)
         db.session.commit()
 
