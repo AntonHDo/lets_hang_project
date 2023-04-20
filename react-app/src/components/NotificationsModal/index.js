@@ -19,6 +19,13 @@ const NotificationsModal = ({ notifications, locations }) => {
   //   dispatch(updateScheduling(notification.scheduling?.id))
   // }, [dispatch])
 
+  const handleFriendRequest = async (notificationId) => {
+    await dispatch(updateFriendStatus(notificationId, 'accepted'));
+    dispatch(removeNotification(notificationId));
+    dispatch(fetchNotifications());
+    closeModal()
+  }
+
   const handleAccept = async (scheduling, notificationId) => {
     await dispatch(removeNotification(notificationId));
     const newScheduling = {
@@ -54,24 +61,31 @@ const NotificationsModal = ({ notifications, locations }) => {
           <>
             <li className="notifications-list" key={notification?.id}>
               {notification.type === "friend-request" ? (
-                `${notification?.other_user.username} sent you a friend request.`
+                <>
+                  {`${notification?.other_user.username} sent you a friend request.`}
+                  <button onClick={() => handleFriendRequest(notification.id)}>Accept</button>
+                  <button onClick={() => handleDecline(notification.id)}>Decline</button>
+                </>
               ) : (
-                `${notification?.other_user.username} wants to schedule a Hang out at ${location?.location_name}, ${new Date(notification?.scheduling?.date).toLocaleString("en-US", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })} at ${new Date(`1970-01-01T${notification.scheduling?.time_start}`).toLocaleString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                })} to ${new Date(`1970-01-01T${notification.scheduling?.time_end}`).toLocaleString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                })}`
+                <>
+                  {`${notification?.other_user.username} wants to schedule a Hang out at ${location?.location_name}, ${new Date(notification?.scheduling?.date).toLocaleString("en-US", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })} at ${new Date(`1970-01-01T${notification.scheduling?.time_start}`).toLocaleString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })} to ${new Date(`1970-01-01T${notification.scheduling?.time_end}`).toLocaleString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}`}
+
+                  <button onClick={() => handleAccept(scheduling, notification.id)}>Accept</button>
+                  <button onClick={() => handleDecline(notification.id)}>Decline</button>
+                </>
               )}
-              <button onClick={() => handleAccept(scheduling, notification.id)}>Accept</button>
-              <button onClick={() => handleDecline(notification.id)}>Decline</button>
             </li>
           </>
         )
