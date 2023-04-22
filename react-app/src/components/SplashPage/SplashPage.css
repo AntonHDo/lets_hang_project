@@ -11,7 +11,7 @@
   display: flex;
   /* border: red solid 1px; */
   align-items: center;
-  flex-basis: 50%;
+  flex-basis: 40%;
 }
 
 .splash-page-left-container h1 {
@@ -20,6 +20,7 @@
   font-size: 100px;
   text-align: center;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .splash-page-left-container h3 {
@@ -29,8 +30,11 @@
 
 .splash-page-right-container {
   flex-direction: column;
-  border: red solid 1px;
+  /* border: red solid 1px; */
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 60%;
 }
 
 .sign-up-login-button {
@@ -44,4 +48,12 @@
   font-size: 25px;
   margin-left: 5px;
   text-decoration: underline;
+}
+
+.splash-page-right-container img {
+  width: 100%;
+  border-radius: 200px;
+  margin-right: 50px;
+  margin-left: 10px;
+  opacity: 0.8;
 }

@@ -3,6 +3,7 @@ import React from "react"
 import OpenModalButton from "../OpenModalButton"
 import SignupFormModal from "../SignupFormModal"
 import LoginFormModal from "../LoginFormModal"
+import SplashPageImage from "../Banner/splashpageimage.jpg"
 
 function SplashPage() {
   return (
@@ -21,7 +22,9 @@ function SplashPage() {
           Welcome to Let's Hang, the ultimate app that connects you with like-minded climbing enthusiasts, ready to embark on exciting vertical adventures together. Discover potential climbing partners based on skill level, location, and shared interests. With Let's Hang, scaling new heights becomes even more enjoyable and safe, surrounded by a supportive community of fellow climbers. Start using Let's Hang today and never climb alone again!"
         </h3> */}
       </div>
-      <div className="splash-page-right-container">right</div>
+      <div className="splash-page-right-container">
+        <img src={SplashPageImage} />
+      </div>
     </div>
   )
 }
