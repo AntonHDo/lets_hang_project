@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Locations from "./components/Locations";
 import ClimbersList from "./components/ClimbersList";
 import CurrentUser from "./components/CurrentUser";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Locations />
+            <SplashPage />
           </Route>
           {/* <Route path="/login" >
             <LoginFormPage />
@@ -30,6 +31,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route> */}
+          <Route exact path="/home">
+            <Locations />
+          </Route>
           <Route exact path="/locations/:locationId">
             <ClimbersList />
           </Route>

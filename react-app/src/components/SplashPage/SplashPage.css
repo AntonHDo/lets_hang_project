@@ -1,0 +1,47 @@
+.splash-page-container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.splash-page-left-container {
+  flex-direction: column;
+  display: flex;
+  /* border: red solid 1px; */
+  align-items: center;
+  flex-basis: 50%;
+}
+
+.splash-page-left-container h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 100px;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.splash-page-left-container h3 {
+  color: white;
+  padding-left: 10px;
+}
+
+.splash-page-right-container {
+  flex-direction: column;
+  border: red solid 1px;
+  display: flex;
+}
+
+.sign-up-login-button {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.sign-up-login-button button {
+  color: white;
+  font-size: 25px;
+  margin-left: 5px;
+  text-decoration: underline;
+}
