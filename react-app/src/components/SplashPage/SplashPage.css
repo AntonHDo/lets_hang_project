@@ -3,7 +3,6 @@
   /* flex-direction: column; */
   align-items: center;
   justify-content: space-between;
-
 }
 
 .splash-page-left-container {
@@ -52,8 +51,97 @@
 
 .splash-page-right-container img {
   width: 100%;
-  border-radius: 200px;
+  border-radius: 0px;
   margin-right: 50px;
   margin-left: 10px;
-  opacity: 0.8;
+  /* opacity: 0.8; */
+}
+
+
+.aboutUs-SplashPageContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: rgba(56, 56, 56, 0.1); */
+  color: white;
+  padding-bottom: 80px;
+
+
+}
+
+.boxes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20%;
+  justify-content: space-around;
+  align-content: center;
+  grid-auto-flow: dense;
+}
+
+.splash-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 450px;
+  height: 450px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: rgba(56, 56, 56, 0.5);
+}
+
+.splash-box-title {
+  font-weight: bold;
+  margin-bottom: 40px;
+  font-size: 25px;
+
+}
+
+.splash-box-description {
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  /* sets the width of the scrollbar */
+  scrollbar-color: #555555 #F5F5F5;
+  padding-right: 10px;
+  font-size: 20px;
+  /* sets the color of the scrollbar */
+}
+
+.splash-box-description ul {
+  padding: 0;
+}
+
+.splash-box-description::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+
+}
+
+.splash-box-description::-webkit-scrollbar-thumb {
+  background-color: lightblue;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.splash-box-description::-webkit-scrollbar-track {
+  background-color: #555555;
+}
+
+
+@media (max-width: 1919px) {
+  .aboutUs-SplashPageContainer {
+    margin-top: 80px;
+    padding-bottom: 100px;
+    /* adjust as needed */
+
+  }
+
+  .boxes-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5%;
+  }
 }

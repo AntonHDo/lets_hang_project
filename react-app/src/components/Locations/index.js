@@ -80,7 +80,7 @@ const Locations = () => {
 
         ))}
       </div>
-      <section class="splash-page-content ">
+      {/* <section class="splash-page-content ">
         <div class="about-us white-space">
           <div class="text-container block">
             <h2>About Us</h2>
@@ -108,7 +108,7 @@ const Locations = () => {
           </div>
         </div>
 
-      </section>
+      </section> */}
     </div>
 
   )
