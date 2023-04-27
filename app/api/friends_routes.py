@@ -39,7 +39,9 @@ def update_friend_status(id):
 
 @friends_routes.route('/<int:friend_id>', methods=['DELETE'])
 def delete_a_friend(friend_id):
+    print(f"Friend ID to delete: {friend_id}")
     current_user_id = current_user.id
+    print(f"Current user ID: {current_user_id}")
 
     # Find the friend relationship you want to delete
     friend_to_delete = Friend.query.filter(
@@ -49,6 +51,6 @@ def delete_a_friend(friend_id):
 
     if not friend_to_delete:
         return {"errors": ["Friendship not found."]}
-
+    print("FRIEND TO DELETE \n\n\n\n\n", friend_to_delete.to_dict())
     friend_to_delete.delete_friend()
     return {"message": "Friendship deleted."}

@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeFriend } from "../../store/friends";
 
-const RemoveFriendModal = ({ friendsArr, onDeleted }) => {
+
+const RemoveFriendModal = ({ friends, onDeleted }) => {
   const { closeModal } = useModal()
   const dispatch = useDispatch()
 
+  const friendsArr = Object.values(friends);
 
 
   const handleRemoveFriend = async (id) => {
@@ -26,9 +28,8 @@ const RemoveFriendModal = ({ friendsArr, onDeleted }) => {
           <div className="friends-first-last-name">
             {friend.friend.first_name} {friend.friend.last_name}
           </div>
-          <div className="friends-status">
-            Status: {friend.status}</div>
-          <button type="submit" onClick={() => handleRemoveFriend(friend.id)}>Delete Friend?
+
+          <button type="submit" onClick={() => handleRemoveFriend(friend.friend_id)}>Delete Friend?
           </button>
         </div>
       ))}

@@ -83,7 +83,7 @@ const CurrentUser = () => {
               <div className="currentUsersFriendsButton">
                 <OpenModalButton
                   buttonText={`${userFriendsArr.length} Friend(s)`}
-                  modalComponent={<RemoveFriendModal friendsArr={userFriendsArr}
+                  modalComponent={<RemoveFriendModal friends={currentUserFriends}
                     onDeleted={setRefresh} />}
                 />
               </div>
