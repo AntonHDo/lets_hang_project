@@ -9,11 +9,13 @@ import DeleteSchedulingModal from "./DeleteSchedulingModal";
 import EditProfileModal from "./EditProfileModal";
 import DeleteUserModal from "./DeleteUserModal";
 import { fetchCurrentUserFriends } from "../../store/friends";
+import RemoveFriendModal from "./RemoveFriendModal";
 
 const CurrentUser = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user)
   const currentSchedules = useSelector(state => state.schedulings.currentUserSchedulings)
+  const currentUserFriends = useSelector(state => state.friends.currentUserFriends)
 
 
   const [refresh, setRefresh] = useState(false)
@@ -38,8 +40,14 @@ const CurrentUser = () => {
     return <div>loading...</div>
   }
 
+  if (!currentUserFriends) {
+    return null
+  }
   const scheduleArr = Object.values(currentSchedules)
   // console.log(currentUser)
+
+  const userFriendsArr = Object.values(currentUserFriends)
+
 
   if (!currentUser) {
     return null
@@ -68,7 +76,19 @@ const CurrentUser = () => {
             <div className="profileImageContainer">
               <img src={currentUser?.profile_picture} alt="something" />
             </div>
-            <div className="currentUsersFullNameText">{currentUser?.first_name} {currentUser?.last_name}</div>
+            <div className="currentUsersFullNameText">
+              <div>
+                {currentUser?.first_name} {currentUser?.last_name}
+              </div>
+              <div className="currentUsersFriendsButton">
+                <OpenModalButton
+                  buttonText={`${userFriendsArr.length} Friend(s)`}
+                  modalComponent={<RemoveFriendModal friendsArr={userFriendsArr}
+                    onDeleted={setRefresh} />}
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

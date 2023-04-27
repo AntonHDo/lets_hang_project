@@ -35,7 +35,7 @@
   flex-direction: column;
   /* border: var(--gray) solid 10px; */
   border: 2rem solid rgba(0, 32, 93, .8);
-  padding: 100px;
+  padding: 70px;
   background-color: rgba(0, 32, 93, .5);
 }
 
@@ -56,6 +56,22 @@
   height: 100%;
   object-fit: cover;
   /* border: var(--darkblue) solid 2px; */
+
+}
+
+.navLinkHomePage:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.navLinkHomePage:hover img {
+  filter: brightness(70%);
+  transition: all 0.3s ease-in-out;
+}
+
+.navLinkHomePage:hover .homePageLocationAndPeople {
+  transform: translateY(0%);
+  transition: all 0.3s ease-in-out;
 }
 
 .navLinkHomePage {
@@ -77,6 +93,7 @@
   background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.3) 90%);
   pointer-events: none;
   z-index: 1;
+
 }
 
 .homePageLocationAndPeople {
@@ -93,11 +110,20 @@
   align-items: center;
   background: rgba(0, 0, 0, .8);
   color: white;
+  /* transform: translateY(100%); */
+  transition: all 0.3s ease-in-out;
 }
 
-.numberOfPeopleAndIcon {
+.homePageLocationAndPeople .numberOfPeopleAndIcon {
   display: flex;
   align-items: center;
+}
+
+.homePageLocationAndPeople .locationName {
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .white-space {

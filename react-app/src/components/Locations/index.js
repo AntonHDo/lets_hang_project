@@ -19,7 +19,8 @@ const Locations = () => {
       return user && (
         <div className="loggedOutHomeBannerContainer">
           <h2>Welcome to Lets Hang!</h2>
-          <h2>Start sending with new people! Select a location below!</h2>
+          <h2>Start sending with new people!</h2>
+          <h2>Scroll down, choose a location, and click on the photo!</h2>
         </div>
       )
     } else {
@@ -80,35 +81,6 @@ const Locations = () => {
 
         ))}
       </div>
-      {/* <section class="splash-page-content ">
-        <div class="about-us white-space">
-          <div class="text-container block">
-            <h2>About Us</h2>
-            <p>
-              Welcome to Let's Hang, the ultimate platform for rock climbing enthusiasts who are searching for the perfect climbing partner. Our journey began when we realized the importance of having a reliable and like-minded companion to share our love for rock climbing. We understand the challenges of finding someone who shares your passion, skill level, and commitment, which is why we created this app. Let's Hang is designed to connect climbers of all levels, helping you find the right partner to embark on new adventures and reach greater heights together.
-            </p>
-          </div>
-          <div class="image-container">
-            <img src="https://i.imgur.com/HHbB7jL.png" alt="" />
-          </div>
-        </div>
-        <div class="our-mission white-space">
-          <div class="text-container block">
-            <h2>Our Mission</h2>
-            <p>
-              At Let's Hang, our mission is to help you find your potential life-long climbing partner. We believe that having the right climbing companion can make all the difference in reaching your goals, pushing your limits, and creating unforgettable experiences. Our platform aims to foster a community of climbers who support, encourage, and inspire one another to reach new heights. By connecting climbers through our app, we hope to nurture lasting friendships and cultivate a strong sense of camaraderie within the rock climbing community.
-
-              Join us on this exciting journey as we help climbers like you create lasting connections and unforgettable memories. Together, we can conquer the most challenging cliffs and discover the true essence of rock climbing: trust, teamwork, and a shared passion for adventure.
-            </p>
-          </div>
-          <div class="image-container">
-            <img
-              src="https://images.unsplash.com/photo-1516592673884-4a382d1124c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              alt="" />
-          </div>
-        </div>
-
-      </section> */}
     </div>
 
   )
