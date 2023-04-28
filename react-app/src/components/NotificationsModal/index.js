@@ -6,16 +6,20 @@ import { removeScheduling } from "../../store/schedulings";
 import { removeFriend } from "../../store/friends";
 import { fetchNotifications, setNotificationsCount } from "../../store/notifications";
 import { updateScheduling } from "../../store/schedulings";
-import { updateFriendStatus } from "../../store/friends";
+import { updateFriendStatus, makeFriend } from "../../store/friends";
 import './NotificationsModal.css'
+
+
 
 const NotificationsModal = ({ notifications, locations }) => {
   const dispatch = useDispatch()
   // const notificationsArr = Object.values(notifications)
   const locationsArr = Object.values(locations)
-  const { closeModal } = useModal();
-  const [status, setStatus] = useState()
+  const currentUser = useSelector((state) => state.session.user)
   const updatedNotifications = useSelector((state) => state.notifications);
+  const [status, setStatus] = useState()
+  const { closeModal } = useModal();
+
 
   const notificationsArr = Object.values(notifications).filter(notification => {
     if (notification.type === 'scheduling_request') {
@@ -24,8 +28,15 @@ const NotificationsModal = ({ notifications, locations }) => {
     return true;
   });
   const handleFriendRequest = async (notificationId) => {
-    await dispatch(updateFriendStatus(notificationId, 'accepted'));
-    dispatch(removeNotification(notificationId));
+    const notification = notificationsArr.find((notif) => notif.id === notificationId);
+    const newFriend = {
+      user_id: currentUser?.id,
+      friend_id: notification.other_user.id,
+      status: "accepted"
+    }
+
+    await dispatch(makeFriend(newFriend))
+    await dispatch(removeNotification(notificationId));
     dispatch(fetchNotifications());
     closeModal()
   }
@@ -47,6 +58,7 @@ const NotificationsModal = ({ notifications, locations }) => {
     await dispatch(removeNotification(id));
 
     if (notification.type === 'friend-request') {
+      //fix line 51 later, wrong id
       await dispatch(removeFriend(other_user.id))
     } else if (notification.type === "scheduling_request" && scheduling) {
       await dispatch(removeScheduling(scheduling.id))
