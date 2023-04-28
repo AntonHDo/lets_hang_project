@@ -10,6 +10,12 @@ export const DELETE_FRIEND = 'friend/delete'
 
 export const UPDATE_FRIEND_STATUS = "friend/updateStatus"
 
+export const REFRESH_FRIENDS = 'friends/refreshFriends';
+
+export const refreshFriends = () => ({
+  type: REFRESH_FRIENDS,
+});
+
 export const getFriends = (friends) => {
   return {
     type: GET_ALL_FREINDS,
@@ -137,6 +143,8 @@ const friendsReducer = (state = initialState, action) => {
       newState.currentUserFriend = { ...state.currentUserFriend }
       delete newState.currentUserFriend[action.friendId]
       return newState
+    case REFRESH_FRIENDS:
+      return { ...state, refresh: !state.refresh };
     default:
       return state
   }

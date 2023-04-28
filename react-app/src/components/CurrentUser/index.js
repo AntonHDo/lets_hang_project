@@ -10,6 +10,7 @@ import EditProfileModal from "./EditProfileModal";
 import DeleteUserModal from "./DeleteUserModal";
 import { fetchCurrentUserFriends } from "../../store/friends";
 import RemoveFriendModal from "./RemoveFriendModal";
+import Navigation from "../Navigation";
 
 const CurrentUser = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const CurrentUser = () => {
 
   return (
     <div className="currentUsersScheduleContainer">
+      <Navigation setRefresh={setRefresh} />
       <div className="profileContainer">
         <div className="profileNameAndPicContainer">
           <div className="profileAndEdit">

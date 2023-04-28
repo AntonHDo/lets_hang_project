@@ -13,6 +13,8 @@ const RemoveFriendModal = ({ friends, onDeleted }) => {
 
 
   const handleRemoveFriend = async (id) => {
+
+
     await dispatch(removeFriend(id));
     closeModal();
     onDeleted((prevState) => !prevState);

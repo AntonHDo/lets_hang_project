@@ -37,20 +37,40 @@ def update_friend_status(id):
         db.session.commit()
         return friend.to_dict()
 
+# @friends_routes.route('/<int:friend_id>', methods=['DELETE'])
+# def delete_a_friend(friend_id):
+#     print(f"Friend ID to delete: {friend_id}")
+#     current_user_id = current_user.id
+#     print(f"Current user ID: {current_user_id}")
+
+#     # Find the friend relationship you want to delete
+#     friend_to_delete = Friend.query.filter(
+#         ((Friend.user_id == current_user_id) & (Friend.friend_id == friend_id)) |
+#         ((Friend.user_id == friend_id) & (Friend.friend_id == current_user_id))
+#     ).first()
+
+#     if not friend_to_delete:
+#         return {"errors": ["Friendship not found."]}
+#     print("FRIEND TO DELETE \n\n\n\n\n", friend_to_delete.to_dict())
+#     friend_to_delete.delete_friend()
+#     return {"message": "Friendship deleted."}
 @friends_routes.route('/<int:friend_id>', methods=['DELETE'])
 def delete_a_friend(friend_id):
     print(f"Friend ID to delete: {friend_id}")
     current_user_id = current_user.id
     print(f"Current user ID: {current_user_id}")
 
-    # Find the friend relationship you want to delete
-    friend_to_delete = Friend.query.filter(
+    # Find the friend relationships you want to delete
+    friendships_to_delete = Friend.query.filter(
         ((Friend.user_id == current_user_id) & (Friend.friend_id == friend_id)) |
         ((Friend.user_id == friend_id) & (Friend.friend_id == current_user_id))
-    ).first()
+    ).all()
 
-    if not friend_to_delete:
-        return {"errors": ["Friendship not found."]}
-    print("FRIEND TO DELETE \n\n\n\n\n", friend_to_delete.to_dict())
-    friend_to_delete.delete_friend()
-    return {"message": "Friendship deleted."}
+    if not friendships_to_delete:
+        return {"errors": ["Friendship(s) not found."]}
+
+    # Delete all matching friendships
+    for friendship in friendships_to_delete:
+        friendship.delete_friend()
+
+    return {"message": "Friendship(s) deleted."}

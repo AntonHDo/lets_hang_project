@@ -6,12 +6,12 @@ import { removeScheduling } from "../../store/schedulings";
 import { removeFriend } from "../../store/friends";
 import { fetchNotifications, setNotificationsCount } from "../../store/notifications";
 import { updateScheduling } from "../../store/schedulings";
-import { updateFriendStatus, makeFriend } from "../../store/friends";
+import { refreshFriends, makeFriend } from "../../store/friends";
 import './NotificationsModal.css'
 
 
 
-const NotificationsModal = ({ notifications, locations }) => {
+const NotificationsModal = ({ notifications, locations, refresh }) => {
   const dispatch = useDispatch()
   // const notificationsArr = Object.values(notifications)
   const locationsArr = Object.values(locations)
@@ -27,6 +27,8 @@ const NotificationsModal = ({ notifications, locations }) => {
     }
     return true;
   });
+
+
   const handleFriendRequest = async (notificationId) => {
     const notification = notificationsArr.find((notif) => notif.id === notificationId);
     const newFriend = {
@@ -35,9 +37,19 @@ const NotificationsModal = ({ notifications, locations }) => {
       status: "accepted"
     }
 
+    const newFriendReverse = {
+      user_id: notification.other_user.id,
+      friend_id: currentUser?.id,
+      status: "accepted"
+    };
+
     await dispatch(makeFriend(newFriend))
+    await dispatch(makeFriend(newFriendReverse));
     await dispatch(removeNotification(notificationId));
     dispatch(fetchNotifications());
+
+    dispatch(refreshFriends());
+
     closeModal()
   }
 
@@ -50,6 +62,7 @@ const NotificationsModal = ({ notifications, locations }) => {
 
     dispatch(updateScheduling(newScheduling))
     dispatch(fetchNotifications())
+    dispatch(refreshFriends());
     closeModal()
   }
 
@@ -68,6 +81,7 @@ const NotificationsModal = ({ notifications, locations }) => {
     if (Object.keys(updatedNotifications).length === 0) {
       dispatch(setNotificationsCount(0));
     }
+    dispatch(refreshFriends());
     closeModal()
   }
 
