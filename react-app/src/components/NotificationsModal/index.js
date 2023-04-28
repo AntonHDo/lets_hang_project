@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeNotification } from "../../store/notifications";
 import { removeScheduling } from "../../store/schedulings";
-import { removeFriend } from "../../store/friends";
+import { removeFriend, fetchCurrentUserFriends } from "../../store/friends";
 import { fetchNotifications, setNotificationsCount } from "../../store/notifications";
 import { updateScheduling } from "../../store/schedulings";
 import { refreshFriends, makeFriend } from "../../store/friends";
@@ -46,6 +46,7 @@ const NotificationsModal = ({ notifications, locations, refresh }) => {
     await dispatch(makeFriend(newFriend))
     await dispatch(makeFriend(newFriendReverse));
     await dispatch(removeNotification(notificationId));
+    await dispatch(fetchCurrentUserFriends(currentUser?.id))
     dispatch(fetchNotifications());
 
     dispatch(refreshFriends());
