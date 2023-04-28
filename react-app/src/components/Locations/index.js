@@ -64,7 +64,6 @@ const Locations = () => {
       {userLoggedIn()}
 
       <div className="homeLocationsContainer white-space">
-        {/* {user ? <div className="loggedInTextTitle">Start sending with new people! Select a location below!</div> : <></>} */}
         {locationsArr?.map((location) => (
           <NavLink
             onClick={!user ? () => window.alert("Must sign up to start sending with someone!") : () => <></>}

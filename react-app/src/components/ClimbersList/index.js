@@ -51,14 +51,14 @@ const ClimbersList = () => {
                   <div className="climbersFirstNameAndLastName">
                     {user.first_name} {user.last_name}
                   </div>
-                  <div >{user.about_me}</div>
+                  <div className="climbersClickHere">Click Here For More Details!</div>
                 </div>
               </div>}
                 modalComponent={<SchedulingsModal user={user} />} />
             </div>) : (
 
-            <div className="membersDetailsContainer">
-              <button onClick={() => window.alert("You cannot schedule a hangout with yourself")} className="userProfileOnMembers">
+            <div className="membersDetailsContainer cancelOut">
+              <button disabled="true" onClick={() => window.alert("You cannot schedule a hangout with yourself")} className="userProfileOnMembers">
 
                 <div key={user.id} title="You cannot schedule a hangout with yourself!"
                   className="usersListProfilePictureContainer">
@@ -70,7 +70,7 @@ const ClimbersList = () => {
                       {user.first_name} {user.last_name}
 
                     </div>
-                    <div className="climbersFirstNameAndLastName">{user.about_me}</div>
+                    <div className="climbersFirstNameAndLastName climbersClickHere">You Cannot Click On Yourself</div>
                   </div>
                 </div>
               </button>

@@ -13,13 +13,15 @@ function SplashPage() {
           <h1>
             Find Your Perfect Climbing Buddy with Let's Hang!
           </h1>
-          <div className="sign-up-login-button">Already Signed up? Click<OpenModalButton buttonText=' Here!' modalComponent={<LoginFormModal />} /></div>
-          <div className="sign-up-login-button">
-            Ready to start sending with your new partner? Sign up by clicking
-            <OpenModalButton buttonText="Here!" modalComponent={< SignupFormModal />} />
-          </div>
-          <div className="sign-up-login-button">
-            Or scroll down to read more about us! <i className="fa-solid fa-arrow-down"></i>
+          <div className="sign-up-background-container">
+            <div className="sign-up-login-button">Already Signed up? Click<OpenModalButton buttonText=' Here!' modalComponent={<LoginFormModal />} /></div>
+            <div className="sign-up-login-button">
+              Ready to start sending with your new partner? Sign up by clicking
+              <OpenModalButton buttonText="Here!" modalComponent={< SignupFormModal />} />
+            </div>
+            <div className="sign-up-login-button">
+              Or scroll down to read more about us! <i className="fa-solid fa-arrow-down"></i>
+            </div>
           </div>
 
           {/* <h3>

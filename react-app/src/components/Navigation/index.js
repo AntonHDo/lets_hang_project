@@ -45,10 +45,10 @@ function Navigation({ isLoaded, setRefresh }) {
 				<li >
 					<NavLink className="nav-home-button" exact to="/"><i class="fa-solid fa-mountain"></i> Lets Hang!</NavLink>
 				</li>
-				<li className="nav-search">
+				{/* <li className="nav-search">
 					<input
 						readOnly className="nav-search-bar" type="search" placeholder='Feature not yet implimented' />
-				</li>
+				</li> */}
 				<li className="nav-bar-rightside-container">
 					<OpenModalButton
 						buttonText={
