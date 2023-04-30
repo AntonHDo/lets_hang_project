@@ -1,6 +1,6 @@
 # Lets Hang!
 
-Lets Hang is a web-app that was inspired by bumble.com, where fellow climbers can find a climbling partner and send harder than ever!
+Lets Hang is a web-app that was inspired by passion for rock climbing, where fellow climbers can find a climbling partner and send harder than ever!
 
 ## Wiki
 * Feature List
