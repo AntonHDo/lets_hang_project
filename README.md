@@ -30,6 +30,10 @@ Lets Hang is a web-app that was inspired by bumble.com, where fellow climbers ca
 * View the list of friends.
 * Remove friends from their friend list.
 
+<br/>
+
+![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/Friends.gif?raw=true)
+
 ### Scheduling
 * Create a new Hang Out event at a specific location and time.
 * View the list of scheduled Hang Outs they are a part of.
@@ -38,7 +42,15 @@ Lets Hang is a web-app that was inspired by bumble.com, where fellow climbers ca
 * Invite member to join a Hang Out.
 * Accept or decline Hang Out invitations.
 
+<br/>
+
+![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/scheduling.gif?raw=true)
+
 ### Notifications
 * Receive notifications for friend requests and Hang Out invitations.
 * View the list of notifications.
 * Accept or decline friend requests and Hang Out invitations directly from the notifications list.
+
+<br/>
+
+![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/notificaitons.gif?raw=true)
