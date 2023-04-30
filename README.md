@@ -19,8 +19,6 @@ Lets Hang is a web-app that was inspired by bumble.com, where fellow climbers ca
 * Edit profile information, including profile picture, bios, and location.
 * Delete their account.
 
-
-
 ### Friends
 * Send friend requests to other users.
 * Accept or decline friend requests.
