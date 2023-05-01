@@ -23,6 +23,31 @@ Lets Hang is a web-app that was inspired by passion for rock climbing, where fel
 
 ![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/CreateUser2.gif?raw=true)
 ![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/createUser.gif?raw=true)
+```javascript
+const handleCheckUsernameEmail = async () => {
+  const { usernameExists, emailExists } = await dispatch(checkExistingUsernameEmail(username, email));
+
+  const errors = validateForm()
+
+  if (usernameExists) {
+    errors.push('Username already exists')
+  }
+  if (emailExists) {
+    errors.push("Email already exists");
+  }
+  if (errors.length === 0) {
+    setErrors([]);
+    dispatch(saveStepOneData(username, email, password, firstName, lastName, dateOfBirth));
+    goToNextStep();
+  } else {
+    setErrors(errors);
+  }
+};
+
+const handleSaveStepTwo = () => {
+  dispatch(saveStepTwoData(location, gender, bio, profilePicture));
+};
+```
 
 ### Friends
 * Send friend requests to other users.
@@ -33,6 +58,22 @@ Lets Hang is a web-app that was inspired by passion for rock climbing, where fel
 <br/>
 
 ![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/Friends.gif?raw=true)
+
+```javascript
+  const handleFriendSubmit = async (e) => {
+    e.preventDefault();
+    closeModal();
+
+    setSentRequests([...sentRequests, user.id])
+    const notification = {
+      user_id: user.id,
+      other_user_id: currentUser.id,
+      type: "friend-request",
+      message: `${currentUser.username} sent you a friend request.`
+    }
+    await dispatch(makeNotification(notification))
+  }
+ ```
 
 ### Scheduling
 * Create a new Hang Out event at a specific location and time.
@@ -46,6 +87,52 @@ Lets Hang is a web-app that was inspired by passion for rock climbing, where fel
 
 ![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/scheduling.gif?raw=true)
 
+
+```javascript
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newScheduling = {
+      date: date,
+      time_start: timeStart,
+      time_end: timeEnd,
+      user_id: currentUser.id,
+      friend_id: user.id,
+      location_id: user.location_id,
+      status: status
+    };
+
+    const validationErrors = validateScheduling(newScheduling)
+    setErrors(validationErrors)
+
+    const hasErrors = Object.values(validationErrors).some((error) => error !== "");
+
+    if (hasErrors) {
+      console.log(errors)
+      return
+    }
+
+    const scheduling = await dispatch(makeScheduling(newScheduling))
+
+
+    const notification = {
+      user_id: user.id,
+      other_user_id: currentUser.id,
+      scheduling_id: scheduling?.id,
+      type: "scheduling_request",
+      message: "hi",
+      read: false,
+    };
+    await dispatch(makeNotification(notification, scheduling));
+
+    closeModal()
+  }
+
+  const handleCancel = () => {
+    setShowForm(false)
+  }
+  ```
+
 ### Notifications
 * Receive notifications for friend requests and Hang Out invitations.
 * View the list of notifications.
@@ -54,3 +141,62 @@ Lets Hang is a web-app that was inspired by passion for rock climbing, where fel
 <br/>
 
 ![](https://github.com/AntonHDo/lets_hang_project/blob/main/assets/notificaitons.gif?raw=true)
+
+```javascript
+ const handleFriendRequest = async (notificationId) => {
+    const notification = notificationsArr.find((notif) => notif.id === notificationId);
+    const newFriend = {
+      user_id: currentUser?.id,
+      friend_id: notification.other_user.id,
+      status: "accepted"
+    }
+
+    const newFriendReverse = {
+      user_id: notification.other_user.id,
+      friend_id: currentUser?.id,
+      status: "accepted"
+    };
+
+    await dispatch(makeFriend(newFriend))
+    await dispatch(makeFriend(newFriendReverse));
+    await dispatch(removeNotification(notificationId));
+    await dispatch(fetchCurrentUserFriends(currentUser?.id))
+    dispatch(fetchNotifications());
+
+    dispatch(refreshFriends());
+
+    closeModal()
+  }
+
+  const handleAccept = async (scheduling, notificationId) => {
+    await dispatch(removeNotification(notificationId));
+    const newScheduling = {
+      ...scheduling,
+      status: 'accepted'
+    }
+
+    dispatch(updateScheduling(newScheduling))
+    dispatch(fetchNotifications())
+    dispatch(refreshFriends());
+    closeModal()
+  }
+
+  const handleDecline = async (notification) => {
+    const { id, type, other_user, scheduling } = notification;
+    await dispatch(removeNotification(id));
+
+    if (notification.type === 'friend-request') {
+      //fix line 51 later, wrong id
+      await dispatch(removeFriend(other_user.id))
+    } else if (notification.type === "scheduling_request" && scheduling) {
+      await dispatch(removeScheduling(scheduling.id))
+    }
+    dispatch(fetchNotifications())
+
+    if (Object.keys(updatedNotifications).length === 0) {
+      dispatch(setNotificationsCount(0));
+    }
+    dispatch(refreshFriends());
+    closeModal()
+  }
+  ```
