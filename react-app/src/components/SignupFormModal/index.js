@@ -115,20 +115,6 @@ function SignupFormModal() {
 	};
 
 
-	// const handleSaveStepOne = () => {
-
-	// 	const errors = validateForm();
-
-
-	// 	if (errors.length === 0) {
-	// 		setErrors([]);
-	// 		dispatch(saveStepOneData(username, email, password, firstName, lastName, dateOfBirth));
-	// 		goToNextStep();
-	// 	} else {
-	// 		setErrors(errors);
-	// 	}
-	// };
-
 	const handleSaveStepTwo = () => {
 		dispatch(saveStepTwoData(location, gender, bio, profilePicture));
 	};

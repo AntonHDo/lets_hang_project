@@ -118,12 +118,6 @@ const SchedulingsModal = ({ user }) => {
       console.log(errors)
       return
     }
-    //.some is an array method, test to see if at least one element in aray passes test and returns boolean.
-
-    // const errors = validateScheduling(newScheduling);
-    // if (errors.length > 0) {
-    //   return
-    // }
 
     const scheduling = await dispatch(makeScheduling(newScheduling))
 

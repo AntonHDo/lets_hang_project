@@ -26,14 +26,7 @@ const FriendsButton = ({ user, sentRequests, setSentRequests }) => {
   const handleFriendSubmit = async (e) => {
     e.preventDefault();
     closeModal();
-    // const newFriend = {
-    //   user_id: currentUser.id,
-    //   friend_id: user.id,
-    //   status: status
-    // }
 
-    // const friend = await dispatch(makeFriend(newFriend))
-    // if (friend) {
     setSentRequests([...sentRequests, user.id])
     const notification = {
       user_id: user.id,
@@ -42,8 +35,6 @@ const FriendsButton = ({ user, sentRequests, setSentRequests }) => {
       message: `${currentUser.username} sent you a friend request.`
     }
     await dispatch(makeNotification(notification))
-    // }
-
   }
 
   return (
