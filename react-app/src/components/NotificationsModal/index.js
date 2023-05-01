@@ -106,7 +106,7 @@ const NotificationsModal = ({ notifications, locations, refresh }) => {
                 <>
                   {`${notification?.other_user.username} sent you a friend request.`}
                   <button onClick={() => handleFriendRequest(notification.id)}>Accept</button>
-                  <button onClick={() => handleDecline(notification)}>Decline</button>
+                  <button className="yes-please-delete" onClick={() => handleDecline(notification)}>Decline</button>
                 </>
               ) : (
                 <>
@@ -125,7 +125,7 @@ const NotificationsModal = ({ notifications, locations, refresh }) => {
                   })}`}
 
                   <button onClick={() => handleAccept(scheduling, notification.id)}>Accept</button>
-                  <button onClick={() => handleDecline(notification)}>Decline</button>
+                  <button className="yes-please-delete" onClick={() => handleDecline(notification)}>Decline</button>
                 </>
               )}
             </li>

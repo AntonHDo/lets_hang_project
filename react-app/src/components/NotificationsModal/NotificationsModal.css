@@ -1,6 +1,6 @@
 #modal-content .nofitications-container li {
-  border: black solid 1px;
-  padding: 10px;
+  border: #000000 solid 1px;
+  padding: 20px;
   margin-bottom: 10px;
   transition: background-color 0.5s ease-in-out;
   transition: color white 0.5s ease-in-out;
