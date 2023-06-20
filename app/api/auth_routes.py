@@ -11,17 +11,25 @@ from app.api.aws import (
 auth_routes = Blueprint('auth', __name__)
 
 
+# def validation_errors_to_error_messages(validation_errors):
+#     """
+#     Simple function that turns the WTForms validation errors into a simple list
+#     """
+#     errorMessages = ["Invalid Credentials"]
+#     # for field in validation_errors:
+#     #     for error in validation_errors[field]:
+#     #         for one in error:
+#     #             errorMessages.append(f'{one}')
+#     return errorMessages
 def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
     """
-    errorMessages = ["Invalid Credentialsss"]
-    # for field in validation_errors:
-    #     for error in validation_errors[field]:
-    #         for one in error:
-    #             errorMessages.append(f'{one}')
+    errorMessages = ["Invalid Credentials"]
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field}: {error}')
     return errorMessages
-
 
 @auth_routes.route('/')
 def authenticate():
@@ -72,7 +80,7 @@ def sign_up():
         profile_picture.filename = get_unique_filename(profile_picture.filename)
         upload = upload_file_to_s3(profile_picture)
         if "url" not in upload:
-            errors['photo'] = 'Error in uploading your photo'
+            errors={ 'photo':"Error in uploading your photo"}
             return jsonify({ 'errors': errors }), 400
         user = User(
             username=form.data['username'],

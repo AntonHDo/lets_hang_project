@@ -63,7 +63,7 @@ function SignupPageTwo({
       formData.append("first_name", firstName)
       formData.append("last_name", lastName)
       formData.append("date_of_birth", dateOfBirth)
-      formData.append("location", location)
+      formData.append("location_id", location.id) // cannot find the id
       formData.append("gender", gender)
       formData.append("about_me", bio)
       formData.append("profile_picture", finalProfilePicture)

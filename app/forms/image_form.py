@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from app.api.aws_helpers import ALLOWED_EXTENSIONS
+from app.api.aws import ALLOWED_EXTENSIONS
 
 
 class ImageForm(FlaskForm):
