@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SignupForm.css";
 import SignupPageOne from "./SignupPageOne";
 import SignupPageTwo from "./SignupPageTwo";
+import UploadPicture from "../UploadPicture";
 import { useDispatch } from "react-redux";
 import { saveStepOneData, saveStepTwoData, checkExistingUsernameEmail } from "../../store/session";
 

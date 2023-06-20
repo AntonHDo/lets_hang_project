@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField
-from wtforms.validators import DataRequired, Email, ValidationError, Regexp
+from wtforms import StringField, TextAreaField, IntegerField, URLField
+from wtforms.validators import DataRequired, Email, ValidationError, Regexp, URL, NumberRange, Length
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from app.models import User
-
+from app.api.aws import ALLOWED_EXTENSIONS
 
 def user_exists(form, field):
     # Checking if user exists
@@ -28,7 +28,7 @@ class SignUpForm(FlaskForm):
     password = StringField('password', validators=[DataRequired()])
     first_name = StringField("First Name", validators=[DataRequired()])
     last_name = StringField("Last Name", validators=[DataRequired()])
-    profile_picture = StringField("Profile Picture", validators=[DataRequired(), Regexp(r"^https?:\/\/.+")])
+    profile_picture = FileField("Image File", validators=[FileRequired(message='Image is required'), FileAllowed(list(ALLOWED_EXTENSIONS))])
     date_of_birth = StringField("Date Of Birth", validators=[DataRequired()])
     gender = StringField("Gender", validators=[DataRequired()])
     about_me = TextAreaField("About Me", validators=[DataRequired()])

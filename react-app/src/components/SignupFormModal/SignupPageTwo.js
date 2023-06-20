@@ -29,14 +29,14 @@ function SignupPageTwo({
   const [disableSubmit, setDisableSubmit] = useState(true);
   const { closeModal } = useModal();
 
-  const checkImageExists = (url) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => reject(false);
-      img.src = url;
-    });
-  };
+  // const checkImageExists = (url) => {
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image();
+  //     img.onload = () => resolve(true);
+  //     img.onerror = () => reject(false);
+  //     img.src = url;
+  //   });
+  // };
 
   useEffect(() => {
     dispatch(fetchLocations())
@@ -46,16 +46,30 @@ function SignupPageTwo({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateForm()
-    try {
-      await checkImageExists(profilePicture);
-    } catch (error) {
-      errors.push("The provided image URL is invalid or cannot be loaded.");
-    }
+    // const errors = validateForm()
+    // try {
+    //   await checkImageExists(profilePicture);
+    // } catch (error) {
+    //   errors.push("The provided image URL is invalid or cannot be loaded.");
+    // }
     if (errors.length === 0) {
       const defaultImageUrl = "https://i.imgur.com/cXPKYuE.png";
       const finalProfilePicture = profilePicture || defaultImageUrl;
-      await dispatch(signUp(username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, finalProfilePicture));
+
+      const formData = new FormData()
+      formData.append("username", username)
+      formData.append("email", email)
+      formData.append("password", password)
+      formData.append("first_name", firstName)
+      formData.append("last_name", lastName)
+      formData.append("date_of_birth", dateOfBirth)
+      formData.append("location", location)
+      formData.append("gender", gender)
+      formData.append("about_me", bio)
+      formData.append("profile_picture", profilePicture)
+
+      await dispatch(signUp(formData))
+      // await dispatch(signUp(username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, finalProfilePicture));
       handleSaveStepTwo();
       closeModal();
     } else {
@@ -136,10 +150,9 @@ function SignupPageTwo({
         <label>
           Profile Picture
           <input
-            type="text"
-            value={profilePicture}
-            onChange={(e) => setProfilePicture(e.target.value)}
-            placeholder="Please provide a valid profile picture"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setProfilePicture(e.target.files[0])}
 
           />
         </label>
