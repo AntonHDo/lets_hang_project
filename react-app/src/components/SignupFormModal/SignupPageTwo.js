@@ -66,7 +66,7 @@ function SignupPageTwo({
       formData.append("location", location)
       formData.append("gender", gender)
       formData.append("about_me", bio)
-      formData.append("profile_picture", profilePicture)
+      formData.append("profile_picture", finalProfilePicture)
 
       await dispatch(signUp(formData))
       // await dispatch(signUp(username, email, password, firstName, lastName, dateOfBirth, location, gender, bio, finalProfilePicture));
